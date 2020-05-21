@@ -1,0 +1,51 @@
+#!/usr/bin/env node
+
+const es = require("event-stream");
+const commandLineArgs = require("command-line-args");
+const commandLineUsage = require("command-line-usage");
+const discordHook = require("@q3log/discord");
+
+const options = commandLineArgs([
+  { name: "id", type: String, multiple: false },
+  { name: "token", type: String, multiple: false }
+]);
+
+const usage = commandLineUsage([
+  {
+    header: "q3log-discord",
+    content:
+      "Proxy messages between a Quake 3 Log and discord using webhooks"
+  },
+  {
+    header: "Options",
+    optionList: [
+      {
+        name: "id",
+        typeLabel: "{underline string}",
+        description: "discord hook id"
+      },
+      {
+        name: "token",
+        typeLabel: "{underline string}",
+        description: "discord hook token"
+      }
+    ]
+  }
+]);
+
+if (!options.id || !options.token) {
+  console.log(usage);
+  return;
+}
+
+if (!module.parent) {
+  process.stdin
+    .pipe(es.split())
+    .pipe(
+      es.map(function (data, cb) {
+        discordHook(data, { id: options.id, token: options.token });
+        cb(null, data);
+      })
+    )
+    .pipe(process.stdout);
+}

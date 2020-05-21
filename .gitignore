@@ -1,0 +1,16 @@
+node_modules/
+lerna-debug.log
+npm-debug.log
+yarn-error.log
+.idea
+.eslintcache
+*.tsbuildinfo
+
+/packages/*/lib/
+/packages/*/coverage/
+/packages/*/node_modules/
+/packages/*/package-lock.json
+
+coverage/
+
+package-lock.json

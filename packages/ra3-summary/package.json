@@ -1,0 +1,29 @@
+{
+  "name": "@q3log/ra3-summary",
+  "version": "0.0.0",
+  "description": "Rocket Arena 3 Summary",
+  "author": "Samuel Tilly <28404+SamuelTilly@users.noreply.github.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "bin": {
+    "q3log-ra3-summary": "bin/q3log-ra3-summary"
+  },
+  "scripts": {
+    "check-types": "tsc",
+    "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib",
+    "watch": "yarn run build --watch",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "yarn run lint -- --fix",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@q3log/types": "^0.0.0"
+  }
+}

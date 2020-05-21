@@ -1,0 +1,30 @@
+{
+  "name": "@q3log/test",
+  "version": "0.0.0",
+  "description": "test binary",
+  "author": "Samuel Tilly <28404+SamuelTilly@users.noreply.github.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "private": true,
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "bin": {
+    "q3log-test": "bin/q3log-test"
+  },
+  "dependencies": {
+    "@q3log/discord": "^0.0.0"
+  },
+  "scripts": {
+    "check-types": "tsc",
+    "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib",
+    "watch": "yarn run build --watch",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "yarn run lint -- --fix",
+    "test": "jest"
+  }
+}

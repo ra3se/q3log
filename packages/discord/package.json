@@ -1,0 +1,38 @@
+{
+  "name": "@q3log/discord",
+  "version": "0.0.0",
+  "description": "Send summaries to discord",
+  "author": "Samuel Tilly <28404+SamuelTilly@users.noreply.github.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "bin": "bin"
+  },
+  "files": [
+    "lib",
+    "bin"
+  ],
+  "bin": {
+    "q3log-discord": "bin/q3log-discord"
+  },
+  "scripts": {
+    "check-types": "tsc",
+    "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib",
+    "watch": "yarn run build --watch",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "yarn run lint -- --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@q3log/parser": "^0.0.0",
+    "axios": "^0.19.2",
+    "command-line-args": "^5.1.1",
+    "command-line-usage": "^6.1.0",
+    "event-stream": "^4.0.1"
+  },
+  "devDependencies": {
+    "@q3log/types": "^0.0.0"
+  }
+}

@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+process.stdin.setEncoding("utf8");
+
+process.stdin.on("readable", () => {
+  let chunk;
+  while ((chunk = process.stdin.read()) !== null) {
+    console.log(
+      Object.keys(JSON.parse(chunk))
+        .map(
+          package =>
+            `"yarn workspace ${package} run ${process.argv.slice(2).join(" ")}"`
+        )
+        .join(" ")
+    );
+  }
+});

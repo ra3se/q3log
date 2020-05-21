@@ -1,0 +1,5 @@
+export enum Q3Gender {
+  MALE = "GENDER_MALE",
+  FEMALE = "GENDER_FEMALE",
+  NEUTER = "GENDER_NEUTER",
+}
