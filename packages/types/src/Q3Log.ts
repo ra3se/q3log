@@ -1,23 +1,21 @@
-export type Q3LogEvent =
-  | Q3LogBroadcast
-  | Q3LogClientConnect
-  | Q3LogClientDisconnect
-  | Q3LogClientUserInfo
-  | Q3LogInit
-  | Q3LogKill
-  | Q3LogRound
-  | Q3LogSay
-  | Q3LogShutdown
-  | string;
+export type Q3LogEvent<T> = {
+  event: string;
+  data?: T;
+};
+
+// TODO: Change into this and flatten data ->
+// type Q3LogEvent =
+//   | Q3LogInit
+//   | Q3LogShutdown
+//   | Q3LogClientConnect
+//   | Q3LogClientDisconnect
+//   | Q3LogSay
+//   | Q3LogClientUserInfo
+//   | Q3LogRound;
 
 export type Q3LogInit = {
   [key: string]: string;
-  mapname: string;
 };
-
-export type Q3LogRocketArena3Summary = {
-  [key: string]: string;
-}
 
 export type Q3LogShutdown = {};
 
@@ -38,13 +36,6 @@ export type Q3LogSay = {
   message: string;
 };
 
-export type Q3LogTeamSay = {
-  playerIndex: string;
-  arenaIndex: string;
-  player: string;
-  message: string;
-}
-
 export type Q3LogClientUserInfo = {
   [key: string]: string;
   playerIndex: string;
@@ -60,7 +51,7 @@ export type Q3LogKill = {
   attacker: string;
   attackerIndex: string;
   attackerScore: number;
-  message: string;
+  message: string[];
   mod: string;
   modIndex: string;
   target: string;
