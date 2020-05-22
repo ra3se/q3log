@@ -6,7 +6,7 @@
     "lib": ["dom", "es2017", "es2019.object"],
     // "composite": true,
     "declaration": true,
-    "emitDeclarationOnly": true,
+    // "emitDeclarationOnly": false,
     // "isolatedModules": true,
 
     "strict": true,
@@ -16,6 +16,9 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+
+    // No output, use babel instead
+    "noEmit": true,
 
     /* Module Resolution Options */
     "moduleResolution": "node",

@@ -25,7 +25,9 @@ to: packages/<%=name%>/package.json
     "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib",
     "watch": "yarn run build --watch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "yarn run lint -- --fix",
-    "test": "jest"
+    "lint:fix": "yarn run lint -- --fix"
+  },
+  "devDependencies": {
+    "@q3log/types": "^0.0.0"
   }
 }
