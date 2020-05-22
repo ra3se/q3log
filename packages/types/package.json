@@ -22,7 +22,6 @@
     "watch": "yarn run build --watch",
     "watch:check-types": "yarn run check-types --watch",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "yarn run lint -- --fix",
-    "prepublish": "yarn run link && yarn run check-types && yarn run build"
+    "lint:fix": "yarn run lint -- --fix"
   }
 }

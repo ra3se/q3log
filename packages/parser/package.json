@@ -30,7 +30,6 @@
     "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib",
     "watch": "yarn run build --watch",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "yarn run lint -- --fix",
-    "prepublish": "yarn run link && yarn run check-types && yarn run build"
+    "lint:fix": "yarn run lint -- --fix"
   }
 }
