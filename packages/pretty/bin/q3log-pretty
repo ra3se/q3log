@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+const es = require("event-stream");
+const pretty = require("@q3log/pretty");
+
+if (!module.parent) {
+  process.stdin
+    .pipe(es.split())
+    .pipe(
+      es.map(function (data, cb) {
+        cb(null, pretty(data));
+      })
+    )
+    .pipe(process.stdout);
+}

@@ -25,36 +25,36 @@ type DiscordHookEmbedData = {
 
 export default class DiscordClient {
   constructor(id: string, token: string) {
-    this._id = id;
-    this._token = token;
-    this._data = {};
+    this.id = id;
+    this.token = token;
+    this.data = {};
   }
 
-  private _id: string;
-  private _token: string;
-  private _data: DiscordHookData;
+  private id: string;
+  private token: string;
+  private data: DiscordHookData;
 
   public content(content: string): this {
-    this._data.content = content;
+    this.data.content = content;
     return this;
   }
 
   public embed(data: DiscordHookEmbedData): this {
-    this._data.embeds = this._data.embeds || [];
-    if (this._data.embeds.length === 10) {
+    this.data.embeds = this.data.embeds || [];
+    if (this.data.embeds.length === 10) {
       throw new Error("Max number of embedded rich content is 10");
     }
-    this._data.embeds.push(data);
+    this.data.embeds.push(data);
     return this;
   }
 
   public username(name: string): this {
-    this._data.username = name;
+    this.data.username = name;
     return this;
   }
 
   public avatar(url: string): this {
-    this._data["avatar_url"] = url;
+    this.data["avatar_url"] = url;
     return this;
   }
 
@@ -63,17 +63,17 @@ export default class DiscordClient {
       this.content(content);
     }
 
-    if (Object.keys(this._data).length === 0) {
+    if (Object.keys(this.data).length === 0) {
       throw new Error("No data for discord webhook");
     }
 
     return axios
       .post(
-        `https://discordapp.com/api/webhooks/${this._id}/${this._token}`,
-        this._data
+        `https://discordapp.com/api/webhooks/${this.id}/${this.token}`,
+        this.data
       )
       .then((response) => {
-        this._data = {};
+        this.data = {};
         return response;
       });
   }

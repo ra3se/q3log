@@ -1,19 +1,21 @@
 {
-  "name": "@q3log/ra3-summary",
+  "name": "@q3log/pretty",
   "version": "0.0.0",
-  "description": "Rocket Arena 3 Summary",
+  "description": "Generate colorized output to stdout",
   "author": "Samuel Tilly <28404+SamuelTilly@users.noreply.github.com>",
   "homepage": "",
   "license": "MIT",
   "main": "lib/index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "bin": "bin"
   },
   "files": [
-    "lib"
+    "lib",
+    "bin"
   ],
   "bin": {
-    "q3log-ra3-summary": "bin/q3log-ra3-summary"
+    "q3log-pretty": "bin/q3log-pretty"
   },
   "scripts": {
     "check-types": "tsc",
@@ -23,10 +25,6 @@
     "lint:fix": "yarn run lint -- --fix"
   },
   "devDependencies": {
-    "@q3log/types": "^0.0.0",
-    "@types/lodash": "^4.14.152"
-  },
-  "dependencies": {
-    "lodash": "^4.17.15"
+    "@q3log/types": "^0.0.0"
   }
 }

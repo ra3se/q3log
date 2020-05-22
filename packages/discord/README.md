@@ -1,6 +1,6 @@
-# `core`
+# `@q3log/discord`
 
-> TODO: description
+> Submit summaries and information to discord using a hook
 
 ## Usage
 

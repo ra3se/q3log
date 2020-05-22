@@ -1,4 +1,4 @@
-import DiscordClient from "./client";
+import DiscordClient from "./DiscordClient";
 
 export default (client: DiscordClient): Function => {
   let pastMessages: string[] = [];

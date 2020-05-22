@@ -1,4 +1,4 @@
-import parser from "@q3log/parser";
+import parser, { determineEvent } from "@q3log/parser";
 import {
   Q3LogInit,
   Q3LogRound,
@@ -10,14 +10,6 @@ import {
 } from "@q3log/types";
 import SummaryCounter from "./SummaryCounter";
 
-const determineClientConnect = (data: any): data is Q3LogClientConnect => true;
-const determineClientDisconnect = (data: any): data is Q3LogClientDisconnect => true;
-const determineClientUserInfo = (data: any): data is Q3LogClientUserInfo => true;
-const determineInit = (data: any): data is Q3LogInit => true;
-const determineKill = (data: any): data is Q3LogKill => true;
-const determineRound = (data: any): data is Q3LogRound => true;
-const determineShutdown = (data: any): data is Q3LogShutdown => true;
-
 export default (): Function => {
   const counter = new SummaryCounter();
 
@@ -25,19 +17,19 @@ export default (): Function => {
     const event = parser(line);
 
     const endRound: boolean =
-      determineRound(event.data) && event.data.roundIndex === "22";
+      determineEvent<Q3LogRound>(event) && event.roundIndex === "22";
 
     const firstRound: boolean =
-      determineRound(event.data) && event.data.roundIndex === "1";
+      determineEvent<Q3LogRound>(event) && event.roundIndex === "1";
 
-    // determineClientConnect(event.data) && counter.connect(event.data);
-    // determineClientDisconnect(event.data) && counter.disconnect(event.data);
-    // determineClientUserInfo(event.data) && counter.info(event.data);
-    // determineKill(event.data) && counter.kill(event.data);
+    determineEvent<Q3LogKill>(event) && counter.kill(event);
+    determineEvent<Q3LogClientUserInfo>(event) && counter.info(event);
+    determineEvent<Q3LogClientDisconnect>(event) && counter.disconnect(event);
+    determineEvent<Q3LogClientConnect>(event) && counter.connect(event);
 
     if (
-      determineShutdown(event.data) ||
-      determineInit(event.data) ||
+      determineEvent<Q3LogShutdown>(event) ||
+      determineEvent<Q3LogInit>(event) ||
       endRound
     ) {
       return `ra3summary: ${counter.summary()}`;

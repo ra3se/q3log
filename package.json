@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "create": "hygen package new",
-    "test": "wsrun test",
+    "test": "jest",
     "lint": "wsrun lint",
     "build": "wsrun build",
     "watch": "wsrun watch",
@@ -35,6 +35,7 @@
     "hygen": "^5.0.3",
     "jest": "^26.0.1",
     "lerna": "^3.21.0",
+    "lint-staged": "^10.2.6",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
     "typescript": "^3.9.2",
@@ -52,5 +53,6 @@
   "npmClient": "yarn",
   "npmClientArgs": [
     "--pure-lockfile"
-  ]
+  ],
+  "dependencies": {}
 }
