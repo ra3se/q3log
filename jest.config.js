@@ -5,4 +5,13 @@ module.exports = {
   ...base,
   projects: ["<rootDir>/packages/*/"],
   coverageDirectory: "<rootDir>/coverage/",
+  collectCoverageFrom: [
+    "**/*.{js,jsx,ts,tsx}",
+    "!**/node_modules/**",
+    "!**/vendor/**",
+    "!**/jest*.js",
+    "!**/_templates/**",
+    "!**/lib/**",
+    "!**/coverage/**"
+  ]
 };
