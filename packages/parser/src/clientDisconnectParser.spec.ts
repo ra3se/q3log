@@ -7,9 +7,7 @@ test("Not an clientDisconnect event", () => {
 
 test("A proper clientDisconnect event", () => {
   expect(clientDisconnectParser("ClientDisconnect: 2")).toStrictEqual({
-    data: {
-      playerIndex: "2",
-    },
-    event: Q3Event.CLIENT_DISCONNECT,
+    playerIndex: "2",
+    name: Q3Event.CLIENT_DISCONNECT,
   });
 });

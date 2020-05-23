@@ -7,7 +7,6 @@ test("Not an shutdown event", () => {
 
 test("A proper shutdown event", () => {
   expect(shutdownParser("ShutdownGame:")).toStrictEqual({
-    data: {},
-    event: Q3Event.SHUTDOWN,
+    name: Q3Event.SHUTDOWN,
   });
 });

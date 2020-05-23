@@ -20,11 +20,11 @@ test("A proper clientUserinfo event", () => {
       l: "0",
       model: "sarge/default",
       n: "^4>> ^7peaz^1'^0fuv",
-      playerIndex: "4",
       rt: "6045629",
       t: "6045629",
       w: "0",
     },
-    event: Q3Event.CLIENT_USERINFO_CHANGED,
+    playerIndex: "4",
+    name: Q3Event.CLIENT_USERINFO_CHANGED,
   });
 });

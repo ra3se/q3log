@@ -1,16 +1,4 @@
-import {
-  Q3Event,
-  Q3LogEvent,
-  Q3LogSay,
-  Q3LogInit,
-  Q3LogShutdown,
-  Q3LogClientConnect,
-  Q3LogClientDisconnect,
-  Q3LogClientUserInfo,
-  Q3LogRound,
-  Q3LogKill,
-  Q3LogBroadcast,
-} from "@q3log/types";
+import { Q3Event, Q3LogEvent } from "@q3log/types";
 
 import { broadcastParser } from "./broadcastParser";
 import { clientConnectParser } from "./clientConnectParser";
@@ -34,20 +22,7 @@ export { sayParser };
 export { sayTeamParser };
 export { shutdownParser };
 
-export default (
-  line: string
-): Q3LogEvent<
-  | Q3LogBroadcast
-  | Q3LogClientConnect
-  | Q3LogClientDisconnect
-  | Q3LogClientUserInfo
-  | Q3LogInit
-  | Q3LogKill
-  | Q3LogRound
-  | Q3LogSay
-  | Q3LogShutdown
-  | string
-> =>
+export default (line: string): Q3LogEvent =>
   broadcastParser(line) ||
   clientConnectParser(line) ||
   clientDisconnectParser(line) ||
@@ -57,4 +32,4 @@ export default (
   roundParser(line) ||
   sayParser(line) ||
   sayTeamParser(line) ||
-  shutdownParser(line) || { event: Q3Event.UNKNOWN, data: line };
+  shutdownParser(line) || { name: Q3Event.UNKNOWN, line };

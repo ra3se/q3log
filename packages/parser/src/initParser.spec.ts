@@ -39,6 +39,6 @@ test("A proper init event", () => {
       "g_version": "RA3 1.76a Feb  3 2006 22:55:45",
       "g_timeLeft": "27",
     },
-    event: Q3Event.INIT,
+    name: Q3Event.INIT,
   });
 });
