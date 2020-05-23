@@ -1,7 +1,6 @@
 import prettyPrint from "./prettyPrint";
 import chalk from "chalk";
 
-
 describe("colors", () => {
   test("black", () => expect(prettyPrint('^0black')).toBe(chalk.black("black")));
   test("red", () => expect(prettyPrint('^1red')).toBe(chalk.red("red")));

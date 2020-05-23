@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const es = require("event-stream");
-const pretty = require("@q3log/pretty");
+const pretty = require("@q3log/pretty").default;
 
 if (!module.parent) {
   process.stdin

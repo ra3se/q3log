@@ -1,13 +1,5 @@
-import parser, { determineEvent } from "@q3log/parser";
-import {
-  Q3LogInit,
-  Q3LogRound,
-  Q3LogShutdown,
-  Q3LogKill,
-  Q3LogClientUserInfo,
-  Q3LogClientConnect,
-  Q3LogClientDisconnect,
-} from "@q3log/types";
+import parser from "@q3log/parser";
+import { Q3Event } from "@q3log/types";
 import SummaryCounter from "./SummaryCounter";
 
 export default (): Function => {
@@ -16,27 +8,29 @@ export default (): Function => {
   return (line: string): string => {
     const event = parser(line);
 
-    const endRound: boolean =
-      determineEvent<Q3LogRound>(event) && event.roundIndex === "22";
-
-    const firstRound: boolean =
-      determineEvent<Q3LogRound>(event) && event.roundIndex === "1";
-
-    determineEvent<Q3LogKill>(event) && counter.kill(event);
-    determineEvent<Q3LogClientUserInfo>(event) && counter.info(event);
-    determineEvent<Q3LogClientDisconnect>(event) && counter.disconnect(event);
-    determineEvent<Q3LogClientConnect>(event) && counter.connect(event);
-
-    if (
-      determineEvent<Q3LogShutdown>(event) ||
-      determineEvent<Q3LogInit>(event) ||
-      endRound
-    ) {
-      return `ra3summary: ${counter.summary()}`;
-    }
-
-    if (firstRound) {
-      counter.reset();
+    switch (event.name) {
+      case Q3Event.INIT:
+      case Q3Event.SHUTDOWN:
+        return counter.summary();
+      case Q3Event.ROUND:
+        if (event.roundIndex === "22") {
+          return counter.summary();
+        } else if (event.roundIndex === "1") {
+          counter.reset();
+        }
+        break;
+      case Q3Event.CLIENT_CONNECT:
+        counter.connect(event);
+        break;
+      case Q3Event.CLIENT_DISCONNECT:
+        counter.disconnect(event);
+        break;
+      case Q3Event.CLIENT_USERINFO_CHANGED:
+        counter.info(event);
+        break;
+      case Q3Event.KILL:
+        counter.kill(event);
+        break;
     }
 
     return line;

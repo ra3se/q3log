@@ -80,8 +80,8 @@ export default class SummaryCounter {
 
   public info(event: Q3LogClientUserInfo): void {
     const player = this.findPlayer(event.playerIndex);
-    if (player && event.n) {
-      player.name = event.n;
+    if (player && event.data.n) {
+      player.name = event.data.n;
     }
   }
 
@@ -112,7 +112,9 @@ export default class SummaryCounter {
   }
 
   public summary(): string {
-    return JSON.stringify(this.data);
+    const result = JSON.stringify(this.data);
+    this.reset();
+    return result;
   }
 
   public reset(): void {

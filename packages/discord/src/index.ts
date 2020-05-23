@@ -1,5 +1,5 @@
-import parser, { determineEvent } from "@q3log/parser";
-import { Q3LogClientConnect } from "@q3log/types";
+import parser from "@q3log/parser";
+import { Q3Event } from "@q3log/types";
 import DiscordClient from "./DiscordClient";
 import spamFilter from "./spamFilter";
 import stripColor from "@q3log/parser";
@@ -14,8 +14,11 @@ export default (line: string, options: Q3DiscordHookOptions): string => {
   const client = new DiscordClient(options.id, options.token);
   const sendMessage = spamFilter(client);
 
-  determineEvent<Q3LogClientConnect>(event) &&
-    sendMessage(`${stripColor(event.player)} connected`);
+  switch (event.name) {
+    case Q3Event.CLIENT_CONNECT:
+      sendMessage(`${stripColor(event.player)} connected`)
+      break;
+  }
 
   return line;
 };

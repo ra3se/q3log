@@ -3,7 +3,7 @@
 const es = require("event-stream");
 const commandLineArgs = require("command-line-args");
 const commandLineUsage = require("command-line-usage");
-const discordHook = require("@q3log/discord");
+const discord = require("@q3log/discord").default;
 
 const options = commandLineArgs([
   { name: "id", type: String, multiple: false },
@@ -43,7 +43,7 @@ if (!module.parent) {
     .pipe(es.split())
     .pipe(
       es.map(function (data, cb) {
-        discordHook(data, { id: options.id, token: options.token });
+        discord(data, { id: options.id, token: options.token });
         cb(null, data);
       })
     )
