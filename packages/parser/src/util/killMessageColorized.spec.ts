@@ -1,7 +1,7 @@
 // Kill: 7 5 7 5: tores killed ^7O(^0EDVN^7)--o^4< by MOD_ROCKET_SPLASH
 
-import killMessageColorized from "./killMessageColorized";
-import { Q3Gender, Q3Mod } from "@q3log/types";
+import killMessageColorized from "./killMessageColorized"
+import { Q3Gender, Q3Mod } from "@q3log/types"
 
 test("colorize and stringify kill message", () =>
   expect(
@@ -13,4 +13,4 @@ test("colorize and stringify kill message", () =>
       "^7O(^0EDVN^7)--o^4<",
       "5"
     )
-  ).toBe("^7^7O(^0EDVN^7)--o^4< ^7almost dodged ^7tores^7's rocket"));
+  ).toBe("^7^7O(^0EDVN^7)--o^4< ^7almost dodged ^7tores^7's rocket"))

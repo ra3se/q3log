@@ -1,4 +1,4 @@
-import { Q3Mod, Q3Gender, Q3World } from "@q3log/types";
+import { Q3Mod, Q3Gender, Q3World } from "@q3log/types"
 
 export default (
   attacker: string,
@@ -8,182 +8,182 @@ export default (
   target: string,
   targetIndex: string
 ): string[] => {
-  let message = null;
-  let message2 = null;
+  let message = null
+  let message2 = null
 
   if (targetIndex === Q3World) {
-    return []; // No one targets world, silly.
+    return [] // No one targets world, silly.
   }
 
   switch (mod) {
     case Q3Mod.SUICIDE:
-      message = "suicides";
-      break;
+      message = "suicides"
+      break
     case Q3Mod.FALLING:
-      message = "cratered";
-      break;
+      message = "cratered"
+      break
     case Q3Mod.CRUSH:
-      message = "was squished";
-      break;
+      message = "was squished"
+      break
     case Q3Mod.WATER:
-      message = "sank like a rock";
-      break;
+      message = "sank like a rock"
+      break
     case Q3Mod.SLIME:
-      message = "melted";
-      break;
+      message = "melted"
+      break
     case Q3Mod.LAVA:
-      message = "does a back flip into the lava";
-      break;
+      message = "does a back flip into the lava"
+      break
     case Q3Mod.TARGET_LASER:
-      message = "saw the light";
-      break;
+      message = "saw the light"
+      break
     case Q3Mod.TRIGGER_HURT:
-      message = "was in the wrong place";
-      break;
+      message = "was in the wrong place"
+      break
     default:
-      message = null;
-      break;
+      message = null
+      break
   }
 
   if (attackerIndex === targetIndex) {
     switch (mod) {
       case Q3Mod.KAMIKAZE:
-        message = "goes out with a bang";
-        break;
+        message = "goes out with a bang"
+        break
       case Q3Mod.GRENADE_SPLASH:
         if (gender === Q3Gender.FEMALE) {
-          message = "tripped on her own grenade";
+          message = "tripped on her own grenade"
         } else if (gender === Q3Gender.NEUTER) {
-          message = "tripped on its own grenade";
+          message = "tripped on its own grenade"
         } else {
-          message = "tripped on his own grenade";
+          message = "tripped on his own grenade"
         }
 
-        break;
+        break
       case Q3Mod.ROCKET_SPLASH:
         if (gender === Q3Gender.FEMALE) {
-          message = "blew herself up";
+          message = "blew herself up"
         } else if (gender === Q3Gender.NEUTER) {
-          message = "blew itself up";
+          message = "blew itself up"
         } else {
-          message = "blew himself up";
+          message = "blew himself up"
         }
 
-        break;
+        break
       case Q3Mod.PLASMA_SPLASH:
         if (gender === Q3Gender.FEMALE) {
-          message = "melted herself";
+          message = "melted herself"
         } else if (gender === Q3Gender.NEUTER) {
-          message = "melted itself";
+          message = "melted itself"
         } else {
-          message = "melted himself";
+          message = "melted himself"
         }
 
-        break;
+        break
       case Q3Mod.BFG_SPLASH:
-        message = "should have used a smaller gun";
-        break;
+        message = "should have used a smaller gun"
+        break
       case Q3Mod.PROXIMITY_MINE:
         if (gender === Q3Gender.FEMALE) {
-          message = "found her prox mine";
+          message = "found her prox mine"
         } else if (gender === Q3Gender.NEUTER) {
-          message = "found its prox mine";
+          message = "found its prox mine"
         } else {
-          message = "found his prox mine";
+          message = "found his prox mine"
         }
 
-        break;
+        break
       default:
         if (gender === Q3Gender.FEMALE) {
-          message = "killed herself";
+          message = "killed herself"
         } else if (gender === Q3Gender.NEUTER) {
-          message = "killed itself";
+          message = "killed itself"
         } else {
-          message = "killed himself";
+          message = "killed himself"
         }
 
-        break;
+        break
     }
   }
 
   if (message) {
-    return [targetIndex, message];
+    return [targetIndex, message]
   }
 
   if (attacker !== Q3World) {
     switch (mod) {
       case Q3Mod.GRAPPLE:
-        message = "was caught by";
-        break;
+        message = "was caught by"
+        break
       case Q3Mod.GAUNTLET:
-        message = "was pummeled by";
-        break;
+        message = "was pummeled by"
+        break
       case Q3Mod.MACHINEGUN:
-        message = "was machinegunned by";
-        break;
+        message = "was machinegunned by"
+        break
       case Q3Mod.SHOTGUN:
-        message = "was gunned down by";
-        break;
+        message = "was gunned down by"
+        break
       case Q3Mod.GRENADE:
-        message = "ate";
-        message2 = "'s grenade";
-        break;
+        message = "ate"
+        message2 = "'s grenade"
+        break
       case Q3Mod.GRENADE_SPLASH:
-        message = "was shredded by";
-        message2 = "'s shrapnel";
-        break;
+        message = "was shredded by"
+        message2 = "'s shrapnel"
+        break
       case Q3Mod.ROCKET:
-        message = "ate";
-        message2 = "'s rocket";
-        break;
+        message = "ate"
+        message2 = "'s rocket"
+        break
       case Q3Mod.ROCKET_SPLASH:
-        message = "almost dodged";
-        message2 = "'s rocket";
-        break;
+        message = "almost dodged"
+        message2 = "'s rocket"
+        break
       case Q3Mod.PLASMA:
-        message = "was melted by";
-        message2 = "'s plasmagun";
-        break;
+        message = "was melted by"
+        message2 = "'s plasmagun"
+        break
       case Q3Mod.PLASMA_SPLASH:
-        message = "was melted by";
-        message2 = "'s plasmagun";
-        break;
+        message = "was melted by"
+        message2 = "'s plasmagun"
+        break
       case Q3Mod.RAILGUN:
-        message = "was railed by";
-        break;
+        message = "was railed by"
+        break
       case Q3Mod.LIGHTNING:
-        message = "was electrocuted by";
-        break;
+        message = "was electrocuted by"
+        break
       case Q3Mod.BFG:
       case Q3Mod.BFG_SPLASH:
-        message = "was blasted by";
-        message2 = "'s BFG";
-        break;
+        message = "was blasted by"
+        message2 = "'s BFG"
+        break
       case Q3Mod.NAIL:
-        message = "was nailed by";
-        break;
+        message = "was nailed by"
+        break
       case Q3Mod.CHAINGUN:
-        message = "got lead poisoning from";
-        message2 = "'s Chaingun";
-        break;
+        message = "got lead poisoning from"
+        message2 = "'s Chaingun"
+        break
       case Q3Mod.PROXIMITY_MINE:
-        message = "was too close to";
-        message2 = "'s Prox Mine";
-        break;
+        message = "was too close to"
+        message2 = "'s Prox Mine"
+        break
       case Q3Mod.KAMIKAZE:
-        message = "falls to";
-        message2 = "'s Kamikaze blast";
-        break;
+        message = "falls to"
+        message2 = "'s Kamikaze blast"
+        break
       case Q3Mod.JUICED:
-        message = "was juiced by";
-        break;
+        message = "was juiced by"
+        break
       case Q3Mod.TELEFRAG:
-        message = "tried to invade";
-        message2 = "'s personal space";
-        break;
+        message = "tried to invade"
+        message2 = "'s personal space"
+        break
       default:
-        message = "was killed by";
-        break;
+        message = "was killed by"
+        break
     }
   }
 
@@ -191,5 +191,5 @@ export default (
     ? message2
       ? [target, message, attacker, message2]
       : [target, message, attacker]
-    : [];
-};
+    : []
+}

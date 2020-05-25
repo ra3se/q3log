@@ -1,6 +1,6 @@
-import { Q3Event, Q3LogClientUserInfo } from "@q3log/types";
-import parserFactory from "./util/parserFactory";
-import extractDataString from "./util/extractDataString";
+import { Q3Event, Q3LogClientUserInfo } from "@q3log/types"
+import parserFactory from "./util/parserFactory"
+import extractDataString from "./util/extractDataString"
 
 export const clientUserInfoParser = parserFactory(
   new RegExp("^ClientUserinfoChanged: (\\d+) (.+)"),
@@ -9,4 +9,4 @@ export const clientUserInfoParser = parserFactory(
     data: extractDataString(dataString),
     playerIndex,
   })
-);
+)

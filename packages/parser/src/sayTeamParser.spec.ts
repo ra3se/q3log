@@ -1,9 +1,9 @@
-import { sayTeamParser } from "./sayTeamParser";
-import { Q3Event } from "@q3log/types";
+import { sayTeamParser } from "./sayTeamParser"
+import { Q3Event } from "@q3log/types"
 
 test("Not an sayTeam event", () => {
-  expect(sayTeamParser("foo")).toBe(null);
-});
+  expect(sayTeamParser("foo")).toBe(null)
+})
 
 test("A proper sayTeam event", () => {
   expect(
@@ -14,5 +14,5 @@ test("A proper sayTeam event", () => {
     player: "FATPOOPZ",
     playerIndex: "0",
     name: Q3Event.SAY_TEAM,
-  });
-});
+  })
+})

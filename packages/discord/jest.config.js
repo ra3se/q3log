@@ -1,5 +1,5 @@
-const base = require("../../jest.config.base.js");
-const pack = require("./package");
+const base = require("../../jest.config.base.js")
+const pack = require("./package")
 
 module.exports = {
   ...base,
@@ -7,4 +7,4 @@ module.exports = {
   name: pack.name,
   rootDir: "../..",
   testMatch: [`<rootDir>/packages/discordHook/**/*.spec.ts`],
-};
+}

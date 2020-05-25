@@ -1,4 +1,4 @@
-import killMessage from "./killMessage";
+import killMessage from "./killMessage"
 
 export default (
   attacker: string,
@@ -19,5 +19,5 @@ export default (
     (result, current, index) =>
       (result += `${index > 0 && index < 3 ? " " : ""}^7${current}`),
     ""
-  );
-};
+  )
+}

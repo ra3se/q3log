@@ -1,5 +1,5 @@
-import { Q3Event, Q3LogSay } from "@q3log/types";
-import parserFactory from "./util/parserFactory";
+import { Q3Event, Q3LogSay } from "@q3log/types"
+import parserFactory from "./util/parserFactory"
 
 export const sayParser = parserFactory(
   new RegExp("^say: (\\d+) (\\d+): ([^:]+): (.+)"),
@@ -10,4 +10,4 @@ export const sayParser = parserFactory(
     player,
     message,
   })
-);
+)

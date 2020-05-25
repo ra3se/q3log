@@ -1,4 +1,4 @@
-import { Q3Event } from "./Q3Event";
+import { Q3Event } from "./Q3Event"
 
 export interface Q3LogEventBase<T> {
   name: T;

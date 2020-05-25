@@ -1,5 +1,5 @@
-import { Q3Event, Q3LogClientConnect, Q3LogEvent } from "@q3log/types";
-import parserFactory from "./util/parserFactory";
+import { Q3Event, Q3LogClientConnect, Q3LogEvent } from "@q3log/types"
+import parserFactory from "./util/parserFactory"
 
 export const clientConnectParser = parserFactory(
   new RegExp("^ClientConnect: (\\d+) (.+) \\((.+)\\)"),
@@ -9,7 +9,7 @@ export const clientConnectParser = parserFactory(
     player,
     ip,
   })
-);
+)
 
 export const determineClientConnect = (event: Q3LogEvent): event is Q3LogClientConnect =>
-  event.name === Q3Event.CLIENT_CONNECT;
+  event.name === Q3Event.CLIENT_CONNECT

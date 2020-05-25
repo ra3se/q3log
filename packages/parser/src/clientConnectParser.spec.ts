@@ -1,9 +1,9 @@
-import { clientConnectParser } from "./clientConnectParser";
-import { Q3Event } from "@q3log/types";
+import { clientConnectParser } from "./clientConnectParser"
+import { Q3Event } from "@q3log/types"
 
 test("Not an clientConnect event", () => {
-  expect(clientConnectParser("foo")).toBe(null);
-});
+  expect(clientConnectParser("foo")).toBe(null)
+})
 
 test("A proper clientConnect event", () => {
   expect(
@@ -13,5 +13,5 @@ test("A proper clientConnect event", () => {
     player: "ESK^2i",
     playerIndex: "3",
     name: Q3Event.CLIENT_CONNECT,
-  });
-});
+  })
+})

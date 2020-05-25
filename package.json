@@ -12,7 +12,7 @@
   "scripts": {
     "create": "hygen package new",
     "test": "jest",
-    "lint": "wsrun lint",
+    "lint": "wsrun lint --fix",
     "build": "wsrun build",
     "watch": "wsrun watch",
     "start": "wsrun watch"

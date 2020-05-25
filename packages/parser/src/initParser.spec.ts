@@ -1,9 +1,9 @@
-import { initParser } from "./initParser";
-import { Q3Event } from "@q3log/types";
+import { initParser } from "./initParser"
+import { Q3Event } from "@q3log/types"
 
 test("Not an init event", () => {
-  expect(initParser("foo")).toBe(null);
-});
+  expect(initParser("foo")).toBe(null)
+})
 
 test("A proper init event", () => {
   expect(
@@ -40,5 +40,5 @@ test("A proper init event", () => {
       "g_timeLeft": "27",
     },
     name: Q3Event.INIT,
-  });
-});
+  })
+})

@@ -2,7 +2,7 @@
  * Documentation https://discord.com/developers/docs/resources/webhook#execute-webhook
  */
 
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios"
 
 type DiscordResponse = {};
 
@@ -25,9 +25,9 @@ type DiscordHookEmbedData = {
 
 export default class DiscordClient {
   constructor(id: string, token: string) {
-    this.id = id;
-    this.token = token;
-    this.data = {};
+    this.id = id
+    this.token = token
+    this.data = {}
   }
 
   private id: string;
@@ -35,36 +35,36 @@ export default class DiscordClient {
   private data: DiscordHookData;
 
   public content(content: string): this {
-    this.data.content = content;
-    return this;
+    this.data.content = content
+    return this
   }
 
   public embed(data: DiscordHookEmbedData): this {
-    this.data.embeds = this.data.embeds || [];
+    this.data.embeds = this.data.embeds || []
     if (this.data.embeds.length === 10) {
-      throw new Error("Max number of embedded rich content is 10");
+      throw new Error("Max number of embedded rich content is 10")
     }
-    this.data.embeds.push(data);
-    return this;
+    this.data.embeds.push(data)
+    return this
   }
 
   public username(name: string): this {
-    this.data.username = name;
-    return this;
+    this.data.username = name
+    return this
   }
 
   public avatar(url: string): this {
-    this.data["avatar_url"] = url;
-    return this;
+    this.data["avatar_url"] = url
+    return this
   }
 
   public async send(content: string): Promise<AxiosResponse<DiscordResponse>> {
     if (content) {
-      this.content(content);
+      this.content(content)
     }
 
     if (Object.keys(this.data).length === 0) {
-      throw new Error("No data for discord webhook");
+      throw new Error("No data for discord webhook")
     }
 
     return axios
@@ -73,8 +73,8 @@ export default class DiscordClient {
         this.data
       )
       .then((response) => {
-        this.data = {};
-        return response;
-      });
+        this.data = {}
+        return response
+      })
   }
 }

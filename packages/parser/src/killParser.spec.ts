@@ -1,9 +1,9 @@
-import { killParser } from "./killParser";
-import { Q3Mod, Q3Event } from "@q3log/types";
+import { killParser } from "./killParser"
+import { Q3Mod, Q3Event } from "@q3log/types"
 
 test("Not an kill event", () => {
-  expect(killParser("foo")).toBe(null);
-});
+  expect(killParser("foo")).toBe(null)
+})
 
 test("A proper kill event", () => {
   expect(
@@ -20,5 +20,5 @@ test("A proper kill event", () => {
     target: "ouch!",
     targetIndex: "1",
     targetScore: 0,
-  });
-});
+  })
+})

@@ -12,6 +12,9 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "prettier",
   ],
+  rules: {
+    "semi": ["error", "never"],
+  },
   overrides: [
     {
       files: ["*.js", "**/*/bin/*"],
@@ -20,4 +23,7 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: [
+    "**/lib/**/*.js"
+  ]
 };

@@ -1,9 +1,9 @@
-import { clientUserInfoParser } from "./clientUserInfoParser";
-import { Q3Event } from "@q3log/types";
+import { clientUserInfoParser } from "./clientUserInfoParser"
+import { Q3Event } from "@q3log/types"
 
 test("Not an clientUserinfo event", () => {
-  expect(clientUserInfoParser("foo")).toBe(null);
-});
+  expect(clientUserInfoParser("foo")).toBe(null)
+})
 
 test("A proper clientUserinfo event", () => {
   expect(
@@ -26,5 +26,5 @@ test("A proper clientUserinfo event", () => {
     },
     playerIndex: "4",
     name: Q3Event.CLIENT_USERINFO_CHANGED,
-  });
-});
+  })
+})

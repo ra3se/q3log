@@ -1,26 +1,26 @@
-import { Q3Event, Q3LogEvent } from "@q3log/types";
+import { Q3Event, Q3LogEvent } from "@q3log/types"
 
-import { broadcastParser } from "./broadcastParser";
-import { clientConnectParser } from "./clientConnectParser";
-import { clientDisconnectParser } from "./clientDisconnectParser";
-import { clientUserInfoParser } from "./clientUserInfoParser";
-import { initParser } from "./initParser";
-import { killParser } from "./killParser";
-import { roundParser } from "./roundParser";
-import { sayParser } from "./sayParser";
-import { sayTeamParser } from "./sayTeamParser";
-import { shutdownParser } from "./shutdownParser";
+import { broadcastParser } from "./broadcastParser"
+import { clientConnectParser } from "./clientConnectParser"
+import { clientDisconnectParser } from "./clientDisconnectParser"
+import { clientUserInfoParser } from "./clientUserInfoParser"
+import { initParser } from "./initParser"
+import { killParser } from "./killParser"
+import { roundParser } from "./roundParser"
+import { sayParser } from "./sayParser"
+import { sayTeamParser } from "./sayTeamParser"
+import { shutdownParser } from "./shutdownParser"
 
-export { broadcastParser };
-export { clientConnectParser };
-export { clientDisconnectParser };
-export { clientUserInfoParser };
-export { initParser };
-export { killParser };
-export { roundParser };
-export { sayParser };
-export { sayTeamParser };
-export { shutdownParser };
+export { broadcastParser }
+export { clientConnectParser }
+export { clientDisconnectParser }
+export { clientUserInfoParser }
+export { initParser }
+export { killParser }
+export { roundParser }
+export { sayParser }
+export { sayTeamParser }
+export { shutdownParser }
 
 export default (line: string): Q3LogEvent =>
   broadcastParser(line) ||
@@ -32,4 +32,4 @@ export default (line: string): Q3LogEvent =>
   roundParser(line) ||
   sayParser(line) ||
   sayTeamParser(line) ||
-  shutdownParser(line) || { name: Q3Event.UNKNOWN, line };
+  shutdownParser(line) || { name: Q3Event.UNKNOWN, line }

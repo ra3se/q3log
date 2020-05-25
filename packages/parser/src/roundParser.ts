@@ -1,5 +1,5 @@
-import { Q3Event, Q3LogRound } from "@q3log/types";
-import parserFactory from "./util/parserFactory";
+import { Q3Event, Q3LogRound } from "@q3log/types"
+import parserFactory from "./util/parserFactory"
 
 export const roundParser = parserFactory(
   new RegExp("^Running round (\\d+) of (\\d+)"),
@@ -8,4 +8,4 @@ export const roundParser = parserFactory(
     roundIndex,
     roundTotal,
   })
-);
+)

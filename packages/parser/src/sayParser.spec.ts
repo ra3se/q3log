@@ -1,9 +1,9 @@
-import { sayParser } from "./sayParser";
-import { Q3Event } from "@q3log/types";
+import { sayParser } from "./sayParser"
+import { Q3Event } from "@q3log/types"
 
 test("Not an say event", () => {
-  expect(sayParser("foo")).toBe(null);
-});
+  expect(sayParser("foo")).toBe(null)
+})
 
 test("A proper say event", () => {
   expect(sayParser("say: 0 1: FATPOOPZ: men det va da fan")).toStrictEqual({
@@ -12,5 +12,5 @@ test("A proper say event", () => {
     player: "FATPOOPZ",
     playerIndex: "0",
     name: Q3Event.SAY,
-  });
-});
+  })
+})
