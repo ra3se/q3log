@@ -12,6 +12,7 @@ module.exports = {
     "!**/jest*.js",
     "!**/_templates/**",
     "!**/lib/**",
-    "!**/coverage/**"
+    "!**/coverage/**",
+    "!**/*spec*"
   ]
 };
