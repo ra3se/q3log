@@ -1,6 +1,6 @@
 import DiscordClient from "./DiscordClient"
 
-export default (client: DiscordClient): Function => {
+export default (client: DiscordClient): {(message: string): void} => {
   let pastMessages: string[] = []
   let hookMessage = ""
   const hookLastMessage = Date.now()

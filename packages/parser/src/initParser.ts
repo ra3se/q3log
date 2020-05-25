@@ -6,6 +6,6 @@ export const initParser = parserFactory(
   new RegExp("^InitGame: \\\\(.+)"),
   ([dataString]: string[]): Q3LogInit => ({
     name: Q3Event.INIT,
-    data: extractDataString(dataString)
+    data: extractDataString(dataString),
   })
 )

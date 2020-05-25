@@ -9,5 +9,6 @@ export const broadcastParser = parserFactory(
   })
 )
 
-export const determineBroadcast = (event: Q3LogEvent): event is Q3LogBroadcast =>
-  event.name === Q3Event.BROADCAST
+export const determineBroadcast = (
+  event: Q3LogEvent
+): event is Q3LogBroadcast => event.name === Q3Event.BROADCAST

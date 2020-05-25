@@ -11,5 +11,6 @@ export const clientConnectParser = parserFactory(
   })
 )
 
-export const determineClientConnect = (event: Q3LogEvent): event is Q3LogClientConnect =>
-  event.name === Q3Event.CLIENT_CONNECT
+export const determineClientConnect = (
+  event: Q3LogEvent
+): event is Q3LogClientConnect => event.name === Q3Event.CLIENT_CONNECT

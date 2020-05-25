@@ -2,7 +2,9 @@ import parser from "@q3log/parser"
 import { Q3Event } from "@q3log/types"
 import SummaryCounter from "./SummaryCounter"
 
-export default (): Function => {
+interface SummaryParser {(line: string): string}
+
+export default (): SummaryParser => {
   const counter = new SummaryCounter()
 
   return (line: string): string => {

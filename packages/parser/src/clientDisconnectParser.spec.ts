@@ -2,7 +2,7 @@ import { clientDisconnectParser } from "./clientDisconnectParser"
 import { Q3Event } from "@q3log/types"
 
 test("Not an clientDisconnect event", () => {
-  expect(clientDisconnectParser("foo")).toBe(null)
+  expect(clientDisconnectParser("foo")).toBeNull()
 })
 
 test("A proper clientDisconnect event", () => {

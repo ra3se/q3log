@@ -2,7 +2,7 @@ import {
   Q3LogKill,
   Q3LogClientConnect,
   Q3LogClientDisconnect,
-  Q3LogClientUserInfo
+  Q3LogClientUserInfo,
 } from "@q3log/types"
 
 import _ from "lodash"
@@ -13,7 +13,7 @@ type Q3RA3Player = {
   index: string | null;
   name?: string;
   connected: boolean;
-  stats?: {};
+  stats?: {[key: string]: string};
 };
 
 type Q3RA3SummaryData = {
@@ -23,7 +23,7 @@ type Q3RA3SummaryData = {
 };
 
 const incOnPath = <T>(
-  object: object,
+  object: Record<string, unknown>,
   path: _.Many<string | number | symbol>,
   amount: number
 ): T => _.set<T>(object, path, _.get(object, path, 0) + amount)
@@ -33,29 +33,32 @@ const hash = (str: string): string =>
 
 export default class SummaryCounter {
   private data: Q3RA3SummaryData = {
-    start: new Date(),
-    end: new Date(),
-    players: []
-  };
+    start: new Date(Date.now()),
+    end: new Date(Date.now()),
+    players: [],
+  }
 
   private resetPlayerStats(player: Q3RA3Player): Q3RA3Player {
     return Object.assign(player, {
       stats: {
         kills: 0,
         deaths: 0,
-        score: 0
-      }
+        score: 0,
+      },
     })
   }
 
-  private findPlayer(playerIndex: string, ip?: string): Q3RA3Player | undefined {
+  private findPlayer(
+    playerIndex: string,
+    ip?: string
+  ): Q3RA3Player | undefined {
     let player = this.data.players.find(({ index }) => playerIndex === index)
 
     if (ip && !player) {
       player = this.resetPlayerStats({
         id: hash(ip),
         index: playerIndex,
-        connected: true
+        connected: true,
       })
       this.data.players.push(player)
     }
@@ -112,6 +115,7 @@ export default class SummaryCounter {
   }
 
   public summary(): string {
+    this.data.end = new Date(Date.now())
     const result = JSON.stringify(this.data)
     this.reset()
     return result
@@ -121,7 +125,7 @@ export default class SummaryCounter {
     this.data = {
       start: new Date(),
       end: new Date(),
-      players: []
+      players: [],
     }
   }
 }

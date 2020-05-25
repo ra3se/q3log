@@ -2,7 +2,7 @@ import { clientConnectParser } from "./clientConnectParser"
 import { Q3Event } from "@q3log/types"
 
 test("Not an clientConnect event", () => {
-  expect(clientConnectParser("foo")).toBe(null)
+  expect(clientConnectParser("foo")).toBeNull()
 })
 
 test("A proper clientConnect event", () => {

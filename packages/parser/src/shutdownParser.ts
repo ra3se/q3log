@@ -3,5 +3,5 @@ import parserFactory from "./util/parserFactory"
 
 export const shutdownParser = parserFactory(
   new RegExp("^ShutdownGame:"),
-  (): Q3LogShutdown => ({name: Q3Event.SHUTDOWN})
+  (): Q3LogShutdown => ({ name: Q3Event.SHUTDOWN })
 )

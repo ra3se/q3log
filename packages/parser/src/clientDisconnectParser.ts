@@ -5,9 +5,10 @@ export const clientDisconnectParser = parserFactory(
   new RegExp("^ClientDisconnect: (\\d+)"),
   ([playerIndex]: string[]): Q3LogClientDisconnect => ({
     name: Q3Event.CLIENT_DISCONNECT,
-    playerIndex
+    playerIndex,
   })
 )
 
-export const determineClientDisconnect = (event: Q3LogEvent): event is Q3LogClientDisconnect =>
-  event.name === Q3Event.CLIENT_DISCONNECT
+export const determineClientDisconnect = (
+  event: Q3LogEvent
+): event is Q3LogClientDisconnect => event.name === Q3Event.CLIENT_DISCONNECT

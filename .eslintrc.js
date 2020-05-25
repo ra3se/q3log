@@ -5,15 +5,15 @@ module.exports = {
     node: true,
   },
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "prettier"],
+  plugins: ["@typescript-eslint", "jest"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
   ],
   rules: {
     "semi": ["error", "never"],
+    "max-len": ["warn", { "code": 80 }]
   },
   overrides: [
     {
@@ -22,8 +22,15 @@ module.exports = {
         "@typescript-eslint/no-var-requires": "off",
       },
     },
+    {
+      files: ["**/*spec*"],
+      extends: [
+        "plugin:jest/recommended",
+        "plugin:jest/style"
+      ]
+    }
   ],
   ignorePatterns: [
     "**/lib/**/*.js"
   ]
-};
+}

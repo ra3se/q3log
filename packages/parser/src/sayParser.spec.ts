@@ -2,7 +2,7 @@ import { sayParser } from "./sayParser"
 import { Q3Event } from "@q3log/types"
 
 test("Not an say event", () => {
-  expect(sayParser("foo")).toBe(null)
+  expect(sayParser("foo")).toBeNull()
 })
 
 test("A proper say event", () => {

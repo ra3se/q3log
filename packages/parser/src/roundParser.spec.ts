@@ -2,7 +2,7 @@ import { roundParser } from "./roundParser"
 import { Q3Event } from "@q3log/types"
 
 test("Not an round event", () => {
-  expect(roundParser("foo")).toBe(null)
+  expect(roundParser("foo")).toBeNull()
 })
 
 test("A proper round event", () => {

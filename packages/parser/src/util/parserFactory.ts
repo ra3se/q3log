@@ -1,6 +1,8 @@
 import { Q3LogEvent } from "@q3log/types"
 
-interface Q3LogParser { (match: string[]): Q3LogEvent }
+interface Q3LogParser {
+  (match: string[]): Q3LogEvent;
+}
 
 export default (regexp: RegExp, parser: Q3LogParser) => (
   line: string

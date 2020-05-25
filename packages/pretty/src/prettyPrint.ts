@@ -8,7 +8,7 @@ const colorMap = [
   chalk.blue, // 4: Blue.
   chalk.cyan, // 5: Cyan.
   chalk.magenta, // 6: Pink.
-  chalk.white // 7: White.
+  chalk.white, // 7: White.
 ]
 
 export default (...args: string[]): string => {

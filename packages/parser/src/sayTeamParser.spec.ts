@@ -2,7 +2,7 @@ import { sayTeamParser } from "./sayTeamParser"
 import { Q3Event } from "@q3log/types"
 
 test("Not an sayTeam event", () => {
-  expect(sayTeamParser("foo")).toBe(null)
+  expect(sayTeamParser("foo")).toBeNull()
 })
 
 test("A proper sayTeam event", () => {

@@ -2,7 +2,7 @@ import { killParser } from "./killParser"
 import { Q3Mod, Q3Event } from "@q3log/types"
 
 test("Not an kill event", () => {
-  expect(killParser("foo")).toBe(null)
+  expect(killParser("foo")).toBeNull()
 })
 
 test("A proper kill event", () => {

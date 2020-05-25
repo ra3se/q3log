@@ -4,21 +4,19 @@ import { Q3Event, Q3Mod } from "@q3log/types"
 test("Should return unknown event", () => {
   expect(parser("foo")).toStrictEqual({
     name: Q3Event.UNKNOWN,
-    line: "foo"
+    line: "foo",
   })
 })
 
 test("Should return broadcast event", () => {
   expect(parser(`broadcast: print "ESK^2i^7 connected\\n"`)).toStrictEqual({
     name: Q3Event.BROADCAST,
-    message: "ESK^2i^7 connected"
+    message: "ESK^2i^7 connected",
   })
 })
 
 test("Should return a clientConnect event", () => {
-  expect(
-    parser("ClientConnect: 3 ESK^2i (127.0.0.1)")
-  ).toStrictEqual({
+  expect(parser("ClientConnect: 3 ESK^2i (127.0.0.1)")).toStrictEqual({
     ip: "127.0.0.1",
     player: "ESK^2i",
     playerIndex: "3",
@@ -35,22 +33,19 @@ test("Should return a clientDisconnect event", () => {
 
 test("Should return a clientUserinfo event", () => {
   expect(
-    parser(
-      "ClientUserinfoChanged: 4 n\\^4>> ^7peaz^1'^0fuv\\t\\6045629\\rt\\6045629\\model\\sarge/default\\c1\\3\\c2\\0\\hc\\100\\w\\0\\l\\0\\a\\0\\ec\\1067"
-    )
+    parser([
+      "ClientUserinfoChanged: 4 ",
+      "n\\^4>> ^7peaz^1'^0fuv",
+      "\\t\\6045629",
+      "\\rt\\6045629",
+      "\\model\\sarge/default"
+    ].join(""))
   ).toStrictEqual({
     data: {
-      a: "0",
-      c1: "3",
-      c2: "0",
-      ec: "1067",
-      hc: "100",
-      l: "0",
       model: "sarge/default",
       n: "^4>> ^7peaz^1'^0fuv",
       rt: "6045629",
       t: "6045629",
-      w: "0",
     },
     playerIndex: "4",
     name: Q3Event.CLIENT_USERINFO_CHANGED,
@@ -59,19 +54,44 @@ test("Should return a clientUserinfo event", () => {
 
 test("Should return a init event", () => {
   expect(
-    parser(
-      "InitGame: \\sv_dlURL\\ra3.lorio.se/game\\sv_allowDownload\\1\\capturelimit\\8\\g_maxGameClients\\0\\sv_maxclients\\16\\timelimit\\30\\fraglimit\\0\\dmflags\\0\\sv_hostname\\Super Best Friends\\sv_minRate\\0\\sv_maxRate\\0\\sv_dlRate\\100\\sv_minPing\\0\\sv_maxPing\\0\\sv_floodProtect\\0\\version\\ioq3 1.36+u20160122+dfsg1-1/Ubuntu linux-x86 Jan 22 2016\\com_gamename\\Quake3Arena\\com_protocol\\71\\g_gametype\\8\\mapname\\ra3map20\\sv_privateClients\\0\\location\\0\\gamename\\arena\\g_needpass\\0\\g_version\\RA3 1.76a Feb  3 2006 22:55:45\\g_timeLeft\\27"
-    )
+    parser([
+      "InitGame: \\sv_dlURL\\ra3.lorio.se/game",
+      "\\sv_allowDownload\\1",
+      "\\capturelimit\\8",
+      "\\g_maxGameClients\\0",
+      "\\sv_maxclients\\16",
+      "\\timelimit\\30",
+      "\\fraglimit\\0",
+      "\\dmflags\\0",
+      "\\sv_hostname\\Super Best Friends",
+      "\\sv_minRate\\0",
+      "\\sv_maxRate\\0",
+      "\\sv_dlRate\\100",
+      "\\sv_minPing\\0",
+      "\\sv_maxPing\\0",
+      "\\sv_floodProtect\\0",
+      "\\version\\ioq3 1.36+u20160122+dfsg1-1/Ubuntu linux-x86 Jan 22 2016",
+      "\\com_gamename\\Quake3Arena",
+      "\\com_protocol\\71",
+      "\\g_gametype\\8",
+      "\\mapname\\ra3map20",
+      "\\sv_privateClients\\0",
+      "\\location\\0",
+      "\\gamename\\arena",
+      "\\g_needpass\\0",
+      "\\g_version\\RA3 1.76a Feb  3 2006 22:55:45",
+      "\\g_timeLeft\\27",
+    ].join(""))
   ).toStrictEqual({
     data: {
       "sv_dlURL": "ra3.lorio.se/game",
       "sv_allowDownload": "1",
-      capturelimit: "8",
+      "capturelimit": "8",
       "g_maxGameClients": "0",
       "sv_maxclients": "16",
-      timelimit: "30",
-      fraglimit: "0",
-      dmflags: "0",
+      "timelimit": "30",
+      "fraglimit": "0",
+      "dmflags": "0",
       "sv_hostname": "Super Best Friends",
       "sv_minRate": "0",
       "sv_maxRate": "0",
@@ -79,14 +99,14 @@ test("Should return a init event", () => {
       "sv_minPing": "0",
       "sv_maxPing": "0",
       "sv_floodProtect": "0",
-      version: "ioq3 1.36+u20160122+dfsg1-1/Ubuntu linux-x86 Jan 22 2016",
+      "version": "ioq3 1.36+u20160122+dfsg1-1/Ubuntu linux-x86 Jan 22 2016",
       "com_gamename": "Quake3Arena",
       "com_protocol": "71",
       "g_gametype": "8",
-      mapname: "ra3map20",
+      "mapname": "ra3map20",
       "sv_privateClients": "0",
-      location: "0",
-      gamename: "arena",
+      "location": "0",
+      "gamename": "arena",
       "g_needpass": "0",
       "g_version": "RA3 1.76a Feb  3 2006 22:55:45",
       "g_timeLeft": "27",
@@ -132,9 +152,7 @@ test("Should return a say event", () => {
 })
 
 test("Should return a sayTeam event", () => {
-  expect(
-    parser("sayteam: 0 1: FATPOOPZ: men det va da fan")
-  ).toStrictEqual({
+  expect(parser("sayteam: 0 1: FATPOOPZ: men det va da fan")).toStrictEqual({
     arenaIndex: "1",
     message: "men det va da fan",
     player: "FATPOOPZ",

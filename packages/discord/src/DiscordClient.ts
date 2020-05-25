@@ -1,10 +1,11 @@
 /**
- * Documentation https://discord.com/developers/docs/resources/webhook#execute-webhook
+ * Documentation
+ * https://discord.com/developers/docs/resources/webhook#execute-webhook
  */
 
 import axios, { AxiosResponse } from "axios"
 
-type DiscordResponse = {};
+type DiscordResponse = { foo: "bar" };
 
 type DiscordHookData = {
   content?: string;
