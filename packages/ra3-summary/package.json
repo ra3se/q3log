@@ -20,13 +20,17 @@
     "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib",
     "watch": "yarn run build --watch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "yarn run lint -- --fix"
+    "lint:fix": "yarn run lint -- --fix",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "@q3log/types": "^0.0.0",
     "@types/lodash": "^4.14.152"
   },
   "dependencies": {
-    "lodash": "^4.17.15"
-  }
+    "lodash": "^4.17.15",
+    "snyk": "^1.327.0"
+  },
+  "snyk": true
 }
