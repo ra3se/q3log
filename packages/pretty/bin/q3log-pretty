@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-const es = require("event-stream")
-const pretty = require("../lib").default
+const es = require('event-stream')
+const pretty = require('../lib').default
 
 if (!module.parent) {
-  process.stdin.
-    pipe(es.split()).
-    pipe(
+  process.stdin
+    .pipe(es.split())
+    .pipe(
       es.map(function (data, callback) {
         callback(undefined, pretty(data))
       })
-    ).
-    pipe(process.stdout)
+    )
+    .pipe(process.stdout)
 }

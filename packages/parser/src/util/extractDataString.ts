@@ -1,10 +1,10 @@
 export default function extractDataString (
   line: string
 ): { [key: string]: string } {
-  const data = line.split("\\")
+  const data = line.split('\\')
   const result: { [key: string]: string } = {}
 
-  while (data.length) {
+  while (data.length > 0) {
     const [key, value] = data.splice(0, 2)
     result[key] = value
   }

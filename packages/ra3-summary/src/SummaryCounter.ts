@@ -3,33 +3,33 @@ import {
   Q3LogClientConnect,
   Q3LogClientDisconnect,
   Q3LogClientUserInfo
-} from "@q3log/types"
+} from '@q3log/types'
 
-import _ from "lodash"
-import crypto from "crypto"
+import _ from 'lodash'
+import crypto from 'crypto'
 
-type Q3RA3Player = {
-  id: string;
-  index: string | undefined;
-  name?: string;
-  connected: boolean;
-  stats?: {[key: string]: string};
+interface Q3RA3Player {
+  id: string
+  index: string | undefined
+  name?: string
+  connected: boolean
+  stats?: { [key: string]: string }
 };
 
-type Q3RA3SummaryData = {
-  start: Date;
-  end: Date;
-  players: Q3RA3Player[];
-};
+interface Q3RA3SummaryData {
+  start: Date
+  end: Date
+  players: Q3RA3Player[]
+}
 
 const incOnPath = <T>(
-  object: Record<string, unknown>,
+  object: Q3RA3Player,
   path: _.Many<string | number | symbol>,
   amount: number
-): T => _.set<T>(object, path, _.get(object, path, 0) + amount)
+): T => _.set<T>(object, path, _.get(object, path, 0) as number + amount)
 
 const hash = (string: string): string =>
-  crypto.createHash("md5").update(string).digest("hex")
+  crypto.createHash('md5').update(string).digest('hex')
 
 export default class SummaryCounter {
   private data: Q3RA3SummaryData = {
@@ -55,7 +55,7 @@ export default class SummaryCounter {
     let player = this.data.players.find(({ index }) =>
       playerIndex === index)
 
-    if (ip && !player) {
+    if (ip !== undefined && player === undefined) {
       player = this.resetPlayerStats({
         id: hash(ip),
         index: playerIndex,
@@ -69,14 +69,14 @@ export default class SummaryCounter {
 
   public connect (event: Q3LogClientConnect): void {
     const player = this.findPlayer(event.playerIndex, event.ip)
-    if (player) {
+    if (player !== undefined) {
       player.name = event.player
     }
   }
 
   public disconnect (event: Q3LogClientDisconnect): void {
     const player = this.findPlayer(event.playerIndex)
-    if (player) {
+    if (player !== undefined) {
       player.index = undefined
       player.connected = false
     }
@@ -84,7 +84,7 @@ export default class SummaryCounter {
 
   public info (event: Q3LogClientUserInfo): void {
     const player = this.findPlayer(event.playerIndex)
-    if (player && event.data.n) {
+    if (player !== undefined && event.data.n !== undefined) {
       player.name = event.data.n
     }
   }
@@ -93,23 +93,23 @@ export default class SummaryCounter {
     const attackerPlayer = this.findPlayer(event.attackerIndex)
     const targetPlayer = this.findPlayer(event.attackerIndex)
 
-    if (targetPlayer) {
-      incOnPath<Q3RA3Player>(targetPlayer, ["stats", "deaths"], 1)
+    if (targetPlayer !== undefined) {
+      incOnPath<Q3RA3Player>(targetPlayer, ['stats', 'deaths'], 1)
       incOnPath<Q3RA3Player>(
         targetPlayer,
-        ["stats", "score"],
+        ['stats', 'score'],
         event.targetScore
       )
     }
 
-    if (attackerPlayer) {
-      if (targetPlayer && targetPlayer.index !== attackerPlayer.index) {
-        incOnPath<Q3RA3Player>(attackerPlayer, ["stats", "kills"], 1)
+    if (attackerPlayer !== undefined) {
+      if (targetPlayer !== undefined && targetPlayer.index !== attackerPlayer.index) {
+        incOnPath<Q3RA3Player>(attackerPlayer, ['stats', 'kills'], 1)
       }
 
       incOnPath<Q3RA3Player>(
         attackerPlayer,
-        ["stats", "score"],
+        ['stats', 'score'],
         event.attackerScore
       )
     }

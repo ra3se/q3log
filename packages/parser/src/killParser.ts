@@ -1,6 +1,6 @@
-import { Q3LogKill, Q3Gender, Q3World, Q3Event } from "@q3log/types"
-import parserFactory from "./util/parserFactory"
-import killMessage from "./util/killMessage"
+import { Q3LogKill, Q3Gender, Q3World, Q3Event } from '@q3log/types'
+import parserFactory from './util/parserFactory'
+import killMessage from './util/killMessage'
 
 const attackerScore = (attackerIndex: string,
   targetIndex: string,
@@ -16,7 +16,7 @@ const attackerScore = (attackerIndex: string,
 
 export const killParser = parserFactory(
   new RegExp(
-    "^Kill: (\\d+) (\\d+) (\\d+) (\\d+): (.+) killed (.+) by ([A-Z_]+)"
+    '^Kill: (\\d+) (\\d+) (\\d+) (\\d+): (.+) killed (.+) by ([A-Z_]+)'
   ),
   ([
     attackerIndex,

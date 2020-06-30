@@ -1,8 +1,8 @@
-import parser from "@q3log/parser"
-import { Q3Event } from "@q3log/types"
-import SummaryCounter from "./SummaryCounter"
+import parser from '@q3log/parser'
+import { Q3Event } from '@q3log/types'
+import SummaryCounter from './SummaryCounter'
 
-interface SummaryParser {(line: string): string}
+type SummaryParser = (line: string) => string
 
 export default (): SummaryParser => {
   const counter = new SummaryCounter()
@@ -15,9 +15,9 @@ export default (): SummaryParser => {
       case Q3Event.SHUTDOWN:
         return counter.summary()
       case Q3Event.ROUND:
-        if (event.roundIndex === "22") {
+        if (event.roundIndex === '22') {
           return counter.summary()
-        } else if (event.roundIndex === "1") {
+        } else if (event.roundIndex === '1') {
           counter.reset()
         }
         break

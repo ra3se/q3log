@@ -3,26 +3,26 @@
  * https://discord.com/developers/docs/resources/webhook#execute-webhook
  */
 
-import axios, { AxiosResponse } from "axios"
+import axios, { AxiosResponse } from 'axios'
 
-type DiscordResponse = { foo: "bar" };
+interface DiscordResponse { foo: 'bar' }
 
-type DiscordHookData = {
-  content?: string;
-  username?: string;
-  embeds?: DiscordHookEmbedData[];
-  avatar_url?: string;
-};
+interface DiscordHookData {
+  content?: string
+  username?: string
+  embeds?: DiscordHookEmbedData[]
+  avatar_url?: string
+}
 
-type DiscordHookEmbedData = {
-  title?: string;
-  description?: string;
-  url?: string;
-  color?: string;
-  image?: { url: string };
-  author?: { name: string; url?: string; icon_url?: string };
-  footer?: { text: string; icon_url: string };
-};
+interface DiscordHookEmbedData {
+  title?: string
+  description?: string
+  url?: string
+  color?: string
+  image?: { url: string }
+  author?: { name: string, url?: string, icon_url?: string }
+  footer?: { text: string, icon_url: string }
+}
 
 export default class DiscordClient {
   constructor (id: string, token: string) {
@@ -31,9 +31,9 @@ export default class DiscordClient {
     this.data = {}
   }
 
-  private id: string;
-  private token: string;
-  private data: DiscordHookData;
+  private readonly id: string
+  private readonly token: string
+  private data: DiscordHookData
 
   public content (content: string): this {
     this.data.content = content
@@ -41,9 +41,9 @@ export default class DiscordClient {
   }
 
   public embed (data: DiscordHookEmbedData): this {
-    this.data.embeds = this.data.embeds || []
+    this.data.embeds = this.data.embeds ?? []
     if (this.data.embeds.length === 10) {
-      throw new Error("Max number of embedded rich content is 10")
+      throw new Error('Max number of embedded rich content is 10')
     }
     this.data.embeds.push(data)
     return this
@@ -55,26 +55,26 @@ export default class DiscordClient {
   }
 
   public avatar (url: string): this {
-    this.data["avatar_url"] = url
+    this.data.avatar_url = url
     return this
   }
 
   public async send (content: string):
-    Promise<AxiosResponse<DiscordResponse>> {
-    if (content) {
+  Promise<AxiosResponse<DiscordResponse>> {
+    if (content !== undefined) {
       this.content(content)
     }
 
     if (Object.keys(this.data).length === 0) {
-      throw new Error("No data for discord webhook")
+      throw new Error('No data for discord webhook')
     }
 
-    return axios.
-      post(
+    return await axios
+      .post(
         `https://discordapp.com/api/webhooks/${this.id}/${this.token}`,
         this.data
-      ).
-      then((response) => {
+      )
+      .then((response) => {
         this.data = {}
         return response
       })

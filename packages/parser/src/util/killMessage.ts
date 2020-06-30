@@ -1,19 +1,23 @@
-import { Q3Module, Q3Gender, Q3World } from "@q3log/types"
-import moduleMessages from "./killMessageData/moduleMessages"
-import targetMessages from "./killMessageData/targetMessages"
-import genderMessages from "./killMessageData/genderMessages"
+import { Q3Module, Q3Gender, Q3World } from '@q3log/types'
+import { moduleMessages } from './killMessageData/moduleMessages'
+import { targetMessages } from './killMessageData/targetMessages'
+import { genderMessages } from './killMessageData/genderMessages'
 
 interface killMessage {
-  attacker: string,
-  attackerIndex: string,
-  gender: string,
-  q3module: Q3Module,
-  target: string,
+  attacker: string
+  attackerIndex: string
+  gender: string
+  q3module: Q3Module
+  target: string
   targetIndex: string
 }
 
 const genderMessage = (q3module: Q3Module, gender: string): string => {
-  const parseGenderMessage = (maleMessage: string, femaleMessage: string, neuterMessage: string) => {
+  const parseGenderMessage = (
+    maleMessage: string,
+    femaleMessage: string,
+    neuterMessage: string
+  ): string => {
     switch (gender) {
       case Q3Gender.MALE:
         return maleMessage
@@ -24,13 +28,13 @@ const genderMessage = (q3module: Q3Module, gender: string): string => {
     }
   }
 
-  const m = genderMessages[q3module] || genderMessages.DEFAULT
+  const m = genderMessages[q3module] ?? genderMessages.DEFAULT
   return parseGenderMessage(m[0 % m.length], m[1 % m.length], m[2 % m.length])
 }
 
-const addMessageColors = (parts: string[]) => parts.reduce(
+const addMessageColors = (parts: string[]): string => parts.reduce(
   (result, current, index) =>
-    result + `${index > 0 && index < 3 ? " " : ""}^7${current}`, "")
+    result + `${index > 0 && index < 3 ? ' ' : ''}^7${current}`, '')
 
 export default ({
   attacker,
@@ -41,12 +45,12 @@ export default ({
   targetIndex
 }: killMessage): string => {
   const finilizeMessage = (part1?: string, part2?: string): string => {
-    if (part1) {
-      return addMessageColors(part2
+    if (part1 !== undefined) {
+      return addMessageColors(part2 !== undefined
         ? [target, part1, attacker, part2]
         : [target, part1, attacker])
     } else {
-      return ""
+      return ''
     }
   }
 
@@ -55,7 +59,7 @@ export default ({
   }
 
   if (attacker !== Q3World) {
-    return finilizeMessage(...targetMessages[q3module] || targetMessages.DEFAULT)
+    return finilizeMessage(...targetMessages[q3module] ?? targetMessages.DEFAULT)
   }
 
   return addMessageColors([target, moduleMessages[q3module]])
