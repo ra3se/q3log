@@ -1,7 +1,7 @@
-import { Q3Event } from "./Q3Event"
+import { Q3Event } from './Q3Event'
 
 export interface Q3LogEventBase<T> {
-  name: T;
+  name: T
 }
 
 export type Q3LogEvent =
@@ -15,68 +15,68 @@ export type Q3LogEvent =
   | Q3LogSayTeam
   | Q3LogShutdown
   | Q3LogUnknown
-  | Q3LogKill;
+  | Q3LogKill
 
 export interface Q3LogInit extends Q3LogEventBase<Q3Event.INIT> {
-  data: { [key: string]: string };
+  data: { [key: string]: string }
 }
 
-export type Q3LogShutdown = Q3LogEventBase<Q3Event.SHUTDOWN>;
+export type Q3LogShutdown = Q3LogEventBase<Q3Event.SHUTDOWN>
 
 export interface Q3LogClientConnect
   extends Q3LogEventBase<Q3Event.CLIENT_CONNECT> {
-  playerIndex: string;
-  player: string;
-  ip: string;
+  playerIndex: string
+  player: string
+  ip: string
 }
 
 export interface Q3LogClientDisconnect
   extends Q3LogEventBase<Q3Event.CLIENT_DISCONNECT> {
-  playerIndex: string;
+  playerIndex: string
 }
 
 export interface Q3LogSay extends Q3LogEventBase<Q3Event.SAY> {
-  playerIndex: string;
-  arenaIndex: string;
-  player: string;
-  message: string;
+  playerIndex: string
+  arenaIndex: string
+  player: string
+  message: string
 }
 
 export interface Q3LogSayTeam extends Q3LogEventBase<Q3Event.SAY_TEAM> {
-  playerIndex: string;
-  arenaIndex: string;
-  player: string;
-  message: string;
+  playerIndex: string
+  arenaIndex: string
+  player: string
+  message: string
 }
 
 export interface Q3LogClientUserInfo
   extends Q3LogEventBase<Q3Event.CLIENT_USERINFO_CHANGED> {
-  data: { [key: string]: string };
-  playerIndex: string;
+  data: { [key: string]: string }
+  playerIndex: string
 }
 
 export interface Q3LogRound extends Q3LogEventBase<Q3Event.ROUND> {
-  roundIndex: string;
-  roundTotal: string;
+  roundIndex: string
+  roundTotal: string
 }
 
 export interface Q3LogKill extends Q3LogEventBase<Q3Event.KILL> {
-  arenaIndex: string;
-  attacker: string;
-  attackerIndex: string;
-  attackerScore: number;
-  message: string;
-  q3module: string;
-  modIndex: string;
-  target: string;
-  targetIndex: string;
-  targetScore: number;
+  arenaIndex: string
+  attacker: string
+  attackerIndex: string
+  attackerScore: number
+  message: string
+  q3module: string
+  modIndex: string
+  target: string
+  targetIndex: string
+  targetScore: number
 }
 
 export interface Q3LogBroadcast extends Q3LogEventBase<Q3Event.BROADCAST> {
-  message: string;
+  message: string
 }
 
 export interface Q3LogUnknown extends Q3LogEventBase<Q3Event.UNKNOWN> {
-  line: string;
+  line: string
 }

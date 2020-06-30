@@ -1,4 +1,4 @@
-import chalk from "chalk"
+import chalk from 'chalk'
 
 const colorMap = [
   chalk.black, // 0: Black.
@@ -14,17 +14,17 @@ const colorMap = [
 export default (...args: string[]): string => {
   const colorMatch = /(\^\d)/g
   const line = args.reduce((previus, current) => {
-    return previus + (current ? current : "")
-  }, "")
+    return previus + (current ?? '')
+  }, '')
 
   return line.split(colorMatch).reverse().reduce((result, part) => {
-    if (part.match(colorMatch)) {
+    if (part.match(colorMatch) !== null) {
       const colorIndex =
-        Number.parseInt(part.replace("^", ""), 10) % colorMap.length
+        Number.parseInt(part.replace('^', ''), 10) % colorMap.length
       const color = colorMap[colorIndex]
       return color(result)
     }
 
     return part + result
-  }, "")
+  }, '')
 }

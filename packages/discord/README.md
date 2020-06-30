@@ -4,7 +4,7 @@
 
 ## Usage
 
-```
+```javascript
 const core = require('@q3log/discordHook');
 
 // TODO: DEMONSTRATE API

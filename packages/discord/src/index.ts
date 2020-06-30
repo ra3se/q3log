@@ -1,12 +1,12 @@
-import parser, { stripColor } from "@q3log/parser"
-import { Q3Event } from "@q3log/types"
-import DiscordClient from "./DiscordClient"
-import spamFilter from "./spamFilter"
+import parser, { stripColor } from '@q3log/parser'
+import { Q3Event } from '@q3log/types'
+import DiscordClient from './DiscordClient'
+import spamFilter from './spamFilter'
 
-type Q3DiscordHookOptions = {
-  id: string;
-  token: string;
-};
+interface Q3DiscordHookOptions {
+  id: string
+  token: string
+}
 
 export default (line: string, options: Q3DiscordHookOptions): string => {
   const event = parser(line)

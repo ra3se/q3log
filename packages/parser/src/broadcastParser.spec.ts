@@ -1,11 +1,11 @@
-import { broadcastParser, determineBroadcast } from "./broadcastParser"
-import { Q3Event } from "@q3log/types"
+import { broadcastParser, determineBroadcast } from './broadcastParser'
+import { Q3Event } from '@q3log/types'
 
-test("Not an broadcast event", () => {
-  expect(broadcastParser("foo")).toBeUndefined()
+test('Not an broadcast event', () => {
+  expect(broadcastParser('foo')).toBeUndefined()
 })
 
-test("A proper broadcast event", () => {
+test('A proper broadcast event', () => {
   expect(
     broadcastParser("broadcast: print \"Team 1's name reset to Red Team.\\n\"")
   ).toStrictEqual({
@@ -14,7 +14,7 @@ test("A proper broadcast event", () => {
   })
 })
 
-test("Determine event is a broadcast one", () => {
+test('Determine event is a broadcast one', () => {
   expect(
     determineBroadcast({
       message: "Team 1's name reset to Red Team.",
@@ -23,7 +23,7 @@ test("Determine event is a broadcast one", () => {
   ).toBe(true)
 })
 
-test("Determine event is not a broadcast one", () => {
+test('Determine event is not a broadcast one', () => {
   expect(
     determineBroadcast({
       name: Q3Event.INIT,

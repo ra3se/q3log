@@ -6,7 +6,7 @@
 
 Submit a summary event that `q3log-discord` will format and submit to discord.
 
-```
+```bash
 cat games.log | \
   q3log-ra3-summary | \
   q3log-discord

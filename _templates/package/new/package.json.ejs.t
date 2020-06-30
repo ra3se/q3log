@@ -9,7 +9,11 @@ to: packages/<%=name%>/package.json
   },
   "description": "<%=description%>",
   "author": "Samuel Tilly <28404+SamuelTilly@users.noreply.github.com>",
-  "homepage": "",
+  "homepage": "https://github.com/ra3se/q3log",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ra3se/q3log.git"
+  },
   "license": "MIT",
   "main": "lib/index.js",
   "directories": {
