@@ -1,4 +1,4 @@
-export default function extractDataString(
+export default function extractDataString (
   line: string
 ): { [key: string]: string } {
   const data = line.split("\\")

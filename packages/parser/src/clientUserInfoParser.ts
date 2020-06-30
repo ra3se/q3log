@@ -7,6 +7,6 @@ export const clientUserInfoParser = parserFactory(
   ([playerIndex, dataString]: string[]): Q3LogClientUserInfo => ({
     name: Q3Event.CLIENT_USERINFO_CHANGED,
     data: extractDataString(dataString),
-    playerIndex,
+    playerIndex
   })
 )

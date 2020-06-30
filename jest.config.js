@@ -1,5 +1,5 @@
 /* eslint-env node */
-const base = require("./jest.config.base.js");
+const base = require("./jest.config.base.js")
 
 module.exports = {
   ...base,
@@ -15,4 +15,4 @@ module.exports = {
     "!**/coverage/**",
     "!**/*spec*"
   ]
-};
+}

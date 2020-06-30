@@ -1,6 +1,9 @@
 {
   "name": "@q3log/parser",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "description": "Quake 3 log parser",
   "keywords": [
     "quake3",
@@ -10,9 +13,6 @@
   "author": "Samuel Tilly <28404+SamuelTilly@users.noreply.github.com>",
   "homepage": "https://ra3.se",
   "license": "MIT",
-  "engines": {
-    "node": ">= 10.14.2"
-  },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "directories": {
@@ -27,10 +27,6 @@
   ],
   "scripts": {
     "check-types": "tsc",
-    "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib",
-    "watch": "yarn run build --watch",
-    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "yarn run lint -- --fix",
-    "prepublish": "yarn run link && yarn run check-types && yarn run build"
+    "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib"
   }
 }

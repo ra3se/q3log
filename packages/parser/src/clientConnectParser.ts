@@ -7,7 +7,7 @@ export const clientConnectParser = parserFactory(
     name: Q3Event.CLIENT_CONNECT,
     playerIndex,
     player,
-    ip,
+    ip
   })
 )
 

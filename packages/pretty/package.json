@@ -1,6 +1,9 @@
 {
   "name": "@q3log/pretty",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "description": "Generate colorized output to stdout",
   "author": "Samuel Tilly <28404+SamuelTilly@users.noreply.github.com>",
   "homepage": "",
@@ -19,12 +22,14 @@
   },
   "scripts": {
     "check-types": "tsc",
-    "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib",
-    "watch": "yarn run build --watch",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "yarn run lint -- --fix"
+    "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib"
   },
   "devDependencies": {
     "@q3log/types": "^0.0.0"
+  },
+  "dependencies": {
+    "@q3log/parser": "^0.0.0",
+    "chalk": "^4.0.0",
+    "event-stream": "^4.0.1"
   }
 }

@@ -4,6 +4,9 @@ to: packages/<%=name%>/package.json
 {
   "name": "@q3log/<%=name%>",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "description": "<%=description%>",
   "author": "Samuel Tilly <28404+SamuelTilly@users.noreply.github.com>",
   "homepage": "",
@@ -22,10 +25,7 @@ to: packages/<%=name%>/package.json
   },
   "scripts": {
     "check-types": "tsc",
-    "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib",
-    "watch": "yarn run build --watch",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "yarn run lint -- --fix"
+    "build": "babel --root-mode upward --extensions '.ts' --ignore '**/*.spec.ts' src -d lib"
   },
   "devDependencies": {
     "@q3log/types": "^0.0.0"

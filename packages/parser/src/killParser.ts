@@ -1,6 +1,18 @@
 import { Q3LogKill, Q3Gender, Q3World, Q3Event } from "@q3log/types"
 import parserFactory from "./util/parserFactory"
-import killMessageColorized from "./util/killMessageColorized"
+import killMessage from "./util/killMessage"
+
+const attackerScore = (attackerIndex: string,
+  targetIndex: string,
+  attacker: string): number => {
+  if (attackerIndex === targetIndex) {
+    return -1
+  } else if (attacker === Q3World) {
+    return 0
+  } else {
+    return 1
+  }
+}
 
 export const killParser = parserFactory(
   new RegExp(
@@ -9,30 +21,29 @@ export const killParser = parserFactory(
   ([
     attackerIndex,
     targetIndex,
-    modIndex,
+    moduleIndex,
     arenaIndex,
     attacker,
     target,
-    mod,
+    q3module
   ]: string[]): Q3LogKill => ({
     name: Q3Event.KILL,
     arenaIndex,
     attacker,
     attackerIndex,
-    attackerScore:
-      attackerIndex === targetIndex ? -1 : attacker === Q3World ? 0 : 1,
-    message: killMessageColorized(
+    attackerScore: attackerScore(attackerIndex, targetIndex, attacker),
+    message: killMessage({
       attacker,
       attackerIndex,
-      Q3Gender.NEUTER,
-      mod,
+      gender: Q3Gender.NEUTER,
+      q3module,
       target,
       targetIndex
-    ),
-    mod,
-    modIndex,
+    }),
+    q3module: q3module,
+    modIndex: moduleIndex,
     target,
     targetIndex,
-    targetScore: attacker === Q3World ? -1 : 0,
+    targetScore: attacker === Q3World ? -1 : 0
   })
 )

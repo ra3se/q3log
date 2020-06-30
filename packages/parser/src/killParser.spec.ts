@@ -1,8 +1,8 @@
 import { killParser } from "./killParser"
-import { Q3Mod, Q3Event } from "@q3log/types"
+import { Q3Module, Q3Event } from "@q3log/types"
 
 test("Not an kill event", () => {
-  expect(killParser("foo")).toBeNull()
+  expect(killParser("foo")).toBeUndefined()
 })
 
 test("A proper kill event", () => {
@@ -15,10 +15,10 @@ test("A proper kill event", () => {
     attackerIndex: "2",
     attackerScore: 1,
     message: "^7ouch! ^7was railed by ^7fittoter",
-    mod: Q3Mod.RAILGUN,
+    q3module: Q3Module.RAILGUN,
     modIndex: "10",
     target: "ouch!",
     targetIndex: "1",
-    targetScore: 0,
+    targetScore: 0
   })
 })

@@ -6,5 +6,5 @@ module.exports = {
   displayName: pack.name,
   name: pack.name,
   rootDir: "../..",
-  testMatch: [`<rootDir>/packages/pretty/**/*.spec.ts`],
+  testMatch: ["<rootDir>/packages/pretty/**/*.spec.ts"]
 }

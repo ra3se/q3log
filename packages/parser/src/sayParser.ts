@@ -8,6 +8,6 @@ export const sayParser = parserFactory(
     playerIndex,
     arenaIndex,
     player,
-    message,
+    message
   })
 )

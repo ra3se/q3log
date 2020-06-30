@@ -1,8 +1,7 @@
-import parser from "@q3log/parser"
+import parser, { stripColor } from "@q3log/parser"
 import { Q3Event } from "@q3log/types"
 import DiscordClient from "./DiscordClient"
 import spamFilter from "./spamFilter"
-import stripColor from "@q3log/parser"
 
 type Q3DiscordHookOptions = {
   id: string;
