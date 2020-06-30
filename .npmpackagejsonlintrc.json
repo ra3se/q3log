@@ -7,9 +7,7 @@
     "require-name": "error",
     "require-repository": "error",
     "require-version": "error",
-    "require-bugs": "error",
     "require-homepage": "error",
-    "require-keywords": "error",
     "bin-type": "error",
     "config-type": "error",
     "description-type": "error",
@@ -28,9 +26,6 @@
     "repository-type": "error",
     "scripts-type": "error",
     "version-type": "error",
-    "valid-values-private": ["error", [
-      false
-    ]],
     "name-format": "error",
     "version-format": "error"
   }
