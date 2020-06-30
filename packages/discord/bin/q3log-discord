@@ -6,46 +6,46 @@ const commandLineUsage = require("command-line-usage")
 const discord = require("../lib").default
 
 const options = commandLineArgs([
-	{ name: "id", type: String, multiple: false },
-	{ name: "token", type: String, multiple: false }
+  { name: "id", type: String, multiple: false },
+  { name: "token", type: String, multiple: false }
 ])
 
 const usage = commandLineUsage([
-	{
-		header: "q3log-discord",
-		content:
+  {
+    header: "q3log-discord",
+    content:
       "Proxy messages between a Quake 3 Log and discord using webhooks"
-	},
-	{
-		header: "Options",
-		optionList: [
-			{
-				name: "id",
-				typeLabel: "{underline string}",
-				description: "discord hook id"
-			},
-			{
-				name: "token",
-				typeLabel: "{underline string}",
-				description: "discord hook token"
-			}
-		]
-	}
+  },
+  {
+    header: "Options",
+    optionList: [
+      {
+        name: "id",
+        typeLabel: "{underline string}",
+        description: "discord hook id"
+      },
+      {
+        name: "token",
+        typeLabel: "{underline string}",
+        description: "discord hook token"
+      }
+    ]
+  }
 ])
 
 if (!options.id || !options.token) {
-	console.log(usage)
-	return
+  console.log(usage)
+  return
 }
 
 if (!module.parent) {
-	process.stdin
-		.pipe(es.split())
-		.pipe(
-			es.map(function (data, callback) {
-				discord(data, { id: options.id, token: options.token })
-				callback(undefined, data)
-			})
-		)
-		.pipe(process.stdout)
+  process.stdin.
+    pipe(es.split()).
+    pipe(
+      es.map(function (data, callback) {
+        discord(data, { id: options.id, token: options.token })
+        callback(undefined, data)
+      })
+    ).
+    pipe(process.stdout)
 }

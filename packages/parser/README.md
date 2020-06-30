@@ -4,7 +4,7 @@
 
 ## Usage
 
-```
+```javascript
 const q3logParser = require('@q3log/parser');
 
 
