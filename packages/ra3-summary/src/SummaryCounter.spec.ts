@@ -2,9 +2,9 @@ import SummaryCounter from "./SummaryCounter"
 import { Q3Event } from "@q3log/types"
 
 describe("new SummaryCounter()", () => {
-  jest
-    .spyOn(global.Date, "now")
-    .mockImplementation(() =>
+  jest.
+    spyOn(global.Date, "now").
+    mockImplementation(() =>
       new Date("2019-05-14T11:01:58.135Z").valueOf()
     )
   const sum = new SummaryCounter()
@@ -25,7 +25,7 @@ test("Should register player connection", () => {
     name: Q3Event.CLIENT_CONNECT,
     player: "eldamar",
     ip: "127.0.0.1",
-    playerIndex: "0",
+    playerIndex: "0"
   })
 
   expect(JSON.parse(sum.summary()).players).toStrictEqual([

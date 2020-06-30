@@ -6,5 +6,5 @@ module.exports = {
   displayName: pack.name,
   name: pack.name,
   rootDir: "../..",
-  testMatch: [`<rootDir>/packages/ra3-summary/**/*.spec.ts`],
+  testMatch: ["<rootDir>/packages/ra3-summary/**/*.spec.ts"]
 }

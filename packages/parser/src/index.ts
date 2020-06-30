@@ -22,6 +22,8 @@ export { sayParser }
 export { sayTeamParser }
 export { shutdownParser }
 
+export { default as stripColor } from "./util/stripColor"
+
 export default (line: string): Q3LogEvent =>
   broadcastParser(line) ||
   clientConnectParser(line) ||
@@ -32,4 +34,5 @@ export default (line: string): Q3LogEvent =>
   roundParser(line) ||
   sayParser(line) ||
   sayTeamParser(line) ||
-  shutdownParser(line) || { name: Q3Event.UNKNOWN, line }
+  shutdownParser(line) || { name: Q3Event.UNKNOWN,
+    line }

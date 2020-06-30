@@ -66,7 +66,7 @@ export interface Q3LogKill extends Q3LogEventBase<Q3Event.KILL> {
   attackerIndex: string;
   attackerScore: number;
   message: string;
-  mod: string;
+  q3module: string;
   modIndex: string;
   target: string;
   targetIndex: string;

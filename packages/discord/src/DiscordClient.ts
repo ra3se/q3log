@@ -25,7 +25,7 @@ type DiscordHookEmbedData = {
 };
 
 export default class DiscordClient {
-  constructor(id: string, token: string) {
+  constructor (id: string, token: string) {
     this.id = id
     this.token = token
     this.data = {}
@@ -35,12 +35,12 @@ export default class DiscordClient {
   private token: string;
   private data: DiscordHookData;
 
-  public content(content: string): this {
+  public content (content: string): this {
     this.data.content = content
     return this
   }
 
-  public embed(data: DiscordHookEmbedData): this {
+  public embed (data: DiscordHookEmbedData): this {
     this.data.embeds = this.data.embeds || []
     if (this.data.embeds.length === 10) {
       throw new Error("Max number of embedded rich content is 10")
@@ -49,17 +49,18 @@ export default class DiscordClient {
     return this
   }
 
-  public username(name: string): this {
+  public username (name: string): this {
     this.data.username = name
     return this
   }
 
-  public avatar(url: string): this {
+  public avatar (url: string): this {
     this.data["avatar_url"] = url
     return this
   }
 
-  public async send(content: string): Promise<AxiosResponse<DiscordResponse>> {
+  public async send (content: string):
+    Promise<AxiosResponse<DiscordResponse>> {
     if (content) {
       this.content(content)
     }
@@ -68,12 +69,12 @@ export default class DiscordClient {
       throw new Error("No data for discord webhook")
     }
 
-    return axios
-      .post(
+    return axios.
+      post(
         `https://discordapp.com/api/webhooks/${this.id}/${this.token}`,
         this.data
-      )
-      .then((response) => {
+      ).
+      then((response) => {
         this.data = {}
         return response
       })

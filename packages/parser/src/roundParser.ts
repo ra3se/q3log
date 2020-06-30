@@ -6,6 +6,6 @@ export const roundParser = parserFactory(
   ([roundIndex, roundTotal]: string[]): Q3LogRound => ({
     name: Q3Event.ROUND,
     roundIndex,
-    roundTotal,
+    roundTotal
   })
 )

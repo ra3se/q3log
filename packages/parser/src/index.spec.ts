@@ -1,17 +1,17 @@
-import parser from "./"
-import { Q3Event, Q3Mod } from "@q3log/types"
+import parser from "."
+import { Q3Event, Q3Module } from "@q3log/types"
 
 test("Should return unknown event", () => {
   expect(parser("foo")).toStrictEqual({
     name: Q3Event.UNKNOWN,
-    line: "foo",
+    line: "foo"
   })
 })
 
 test("Should return broadcast event", () => {
-  expect(parser(`broadcast: print "ESK^2i^7 connected\\n"`)).toStrictEqual({
+  expect(parser("broadcast: print \"ESK^2i^7 connected\\n\"")).toStrictEqual({
     name: Q3Event.BROADCAST,
-    message: "ESK^2i^7 connected",
+    message: "ESK^2i^7 connected"
   })
 })
 
@@ -20,14 +20,14 @@ test("Should return a clientConnect event", () => {
     ip: "127.0.0.1",
     player: "ESK^2i",
     playerIndex: "3",
-    name: Q3Event.CLIENT_CONNECT,
+    name: Q3Event.CLIENT_CONNECT
   })
 })
 
 test("Should return a clientDisconnect event", () => {
   expect(parser("ClientDisconnect: 2")).toStrictEqual({
     playerIndex: "2",
-    name: Q3Event.CLIENT_DISCONNECT,
+    name: Q3Event.CLIENT_DISCONNECT
   })
 })
 
@@ -45,10 +45,10 @@ test("Should return a clientUserinfo event", () => {
       model: "sarge/default",
       n: "^4>> ^7peaz^1'^0fuv",
       rt: "6045629",
-      t: "6045629",
+      t: "6045629"
     },
     playerIndex: "4",
-    name: Q3Event.CLIENT_USERINFO_CHANGED,
+    name: Q3Event.CLIENT_USERINFO_CHANGED
   })
 })
 
@@ -80,7 +80,7 @@ test("Should return a init event", () => {
       "\\gamename\\arena",
       "\\g_needpass\\0",
       "\\g_version\\RA3 1.76a Feb  3 2006 22:55:45",
-      "\\g_timeLeft\\27",
+      "\\g_timeLeft\\27"
     ].join(""))
   ).toStrictEqual({
     data: {
@@ -109,9 +109,9 @@ test("Should return a init event", () => {
       "gamename": "arena",
       "g_needpass": "0",
       "g_version": "RA3 1.76a Feb  3 2006 22:55:45",
-      "g_timeLeft": "27",
+      "g_timeLeft": "27"
     },
-    name: Q3Event.INIT,
+    name: Q3Event.INIT
   })
 })
 
@@ -125,11 +125,11 @@ test("Should return a kill event", () => {
     attackerIndex: "2",
     attackerScore: 1,
     message: "^7ouch! ^7was railed by ^7fittoter",
-    mod: Q3Mod.RAILGUN,
+    q3module: Q3Module.RAILGUN,
     modIndex: "10",
     target: "ouch!",
     targetIndex: "1",
-    targetScore: 0,
+    targetScore: 0
   })
 })
 
@@ -137,7 +137,7 @@ test("Should return a round event", () => {
   expect(parser("Running round 3 of 20")).toStrictEqual({
     roundIndex: "3",
     roundTotal: "20",
-    name: Q3Event.ROUND,
+    name: Q3Event.ROUND
   })
 })
 
@@ -147,7 +147,7 @@ test("Should return a say event", () => {
     message: "men det va da fan",
     player: "FATPOOPZ",
     playerIndex: "0",
-    name: Q3Event.SAY,
+    name: Q3Event.SAY
   })
 })
 
@@ -157,12 +157,12 @@ test("Should return a sayTeam event", () => {
     message: "men det va da fan",
     player: "FATPOOPZ",
     playerIndex: "0",
-    name: Q3Event.SAY_TEAM,
+    name: Q3Event.SAY_TEAM
   })
 })
 
 test("Should return a shutdown event", () => {
   expect(parser("ShutdownGame:")).toStrictEqual({
-    name: Q3Event.SHUTDOWN,
+    name: Q3Event.SHUTDOWN
   })
 })

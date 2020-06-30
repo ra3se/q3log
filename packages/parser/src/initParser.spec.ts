@@ -2,7 +2,7 @@ import { initParser } from "./initParser"
 import { Q3Event } from "@q3log/types"
 
 test("Not an init event", () => {
-  expect(initParser("foo")).toBeNull()
+  expect(initParser("foo")).toBeUndefined()
 })
 
 test("A proper init event", () => {
@@ -33,7 +33,7 @@ test("A proper init event", () => {
       "\\gamename\\arena",
       "\\g_needpass\\0",
       "\\g_version\\RA3 1.76a Feb  3 2006 22:55:45",
-      "\\g_timeLeft\\27",
+      "\\g_timeLeft\\27"
     ].join(""))
   ).toStrictEqual({
     data: {
@@ -62,8 +62,8 @@ test("A proper init event", () => {
       "gamename": "arena",
       "g_needpass": "0",
       "g_version": "RA3 1.76a Feb  3 2006 22:55:45",
-      "g_timeLeft": "27",
+      "g_timeLeft": "27"
     },
-    name: Q3Event.INIT,
+    name: Q3Event.INIT
   })
 })

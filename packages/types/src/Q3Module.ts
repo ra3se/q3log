@@ -1,4 +1,4 @@
-export enum Q3Mod {
+export enum Q3Module {
   GRAPPLE = "MOD_GRAPPLE",
   GAUNTLET = "MOD_GAUNTLET",
   MACHINEGUN = "MOD_MACHINEGUN",

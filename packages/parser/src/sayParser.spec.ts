@@ -2,7 +2,7 @@ import { sayParser } from "./sayParser"
 import { Q3Event } from "@q3log/types"
 
 test("Not an say event", () => {
-  expect(sayParser("foo")).toBeNull()
+  expect(sayParser("foo")).toBeUndefined()
 })
 
 test("A proper say event", () => {
@@ -11,6 +11,6 @@ test("A proper say event", () => {
     message: "men det va da fan",
     player: "FATPOOPZ",
     playerIndex: "0",
-    name: Q3Event.SAY,
+    name: Q3Event.SAY
   })
 })
