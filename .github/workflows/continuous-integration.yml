@@ -1,0 +1,23 @@
+name: Continuous Integration
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Build libraries
+        run: yarn build
+      - name: Linting
+        run: yarn lint
+      - name: Unit Tests
+        run: yarn test
+
+

@@ -28,7 +28,8 @@
     "lint:md": "markdownlint -p .gitignore --fix **/*.md",
     "typecheck": "wsrun tsc",
     "build": "wsrun build",
-    "watch": "wsrun build --watch"
+    "watch": "wsrun build --watch",
+    "coverage": "yarn test --coverage"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
