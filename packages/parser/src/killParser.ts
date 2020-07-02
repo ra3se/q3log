@@ -1,6 +1,6 @@
-import { Q3LogKill, Q3Gender, Q3World, Q3Event } from '@q3log/types'
+import { Q3LogKill, Q3Gender, Q3World, Q3Event, Q3Module } from '@q3log/types'
 import parserFactory from './util/parserFactory'
-import killMessage from './util/killMessage'
+import generateKillMessage from './util/generateKillMessage'
 
 const attackerScore = (attackerIndex: string,
   targetIndex: string,
@@ -26,24 +26,29 @@ export const killParser = parserFactory(
     attacker,
     target,
     q3module
-  ]: string[]): Q3LogKill => ({
-    name: Q3Event.KILL,
-    arenaIndex,
-    attacker,
-    attackerIndex,
-    attackerScore: attackerScore(attackerIndex, targetIndex, attacker),
-    message: killMessage({
+  ]): Q3LogKill | undefined => {
+    const definedModule: Q3Module | undefined = Object.values(Q3Module).find(x => x === q3module)
+    const killMessage: string | undefined = definedModule !== undefined ? generateKillMessage({
       attacker,
       attackerIndex,
       gender: Q3Gender.NEUTER,
-      q3module,
+      q3module: definedModule,
       target,
       targetIndex
-    }),
-    q3module: q3module,
-    modIndex: moduleIndex,
-    target,
-    targetIndex,
-    targetScore: attacker === Q3World ? -1 : 0
-  })
+    }) : undefined
+
+    return killMessage !== undefined ? {
+      name: Q3Event.KILL,
+      arenaIndex,
+      attacker,
+      attackerIndex,
+      attackerScore: attackerScore(attackerIndex, targetIndex, attacker),
+      message: killMessage,
+      q3module: q3module,
+      modIndex: moduleIndex,
+      target,
+      targetIndex,
+      targetScore: attacker === Q3World ? -1 : 0
+    } : undefined
+  }
 )

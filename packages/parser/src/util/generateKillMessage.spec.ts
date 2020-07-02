@@ -1,12 +1,12 @@
 // Kill: 7 5 7 5: tores killed ^7O(^0EDVN^7)--o^4< by MOD_ROCKET_SPLASH
 
-import killMessage from './killMessage'
+import generateKillMessage from './generateKillMessage'
 import { Q3Gender, Q3Module, Q3World } from '@q3log/types'
 
-describe('killMessage()', () => {
+describe('generateKillMessage()', () => {
   test('target another player', () => {
     return expect(
-      killMessage({
+      generateKillMessage({
         attacker: 'Tesla',
         attackerIndex: '7',
         gender: Q3Gender.NEUTER,
@@ -19,7 +19,7 @@ describe('killMessage()', () => {
 
   test('target her self', () => {
     return expect(
-      killMessage({
+      generateKillMessage({
         attacker: 'Tesla',
         attackerIndex: '7',
         gender: Q3Gender.FEMALE,
@@ -32,7 +32,7 @@ describe('killMessage()', () => {
 
   test('target him self', () => {
     return expect(
-      killMessage({
+      generateKillMessage({
         attacker: 'Tesla',
         attackerIndex: '7',
         gender: Q3Gender.MALE,
@@ -45,7 +45,7 @@ describe('killMessage()', () => {
 
   test('target it self', () => {
     return expect(
-      killMessage({
+      generateKillMessage({
         attacker: 'Tesla',
         attackerIndex: '7',
         gender: Q3Gender.NEUTER,
@@ -58,7 +58,7 @@ describe('killMessage()', () => {
 
   test('fell victim of the world', () => {
     return expect(
-      killMessage({
+      generateKillMessage({
         attacker: Q3World,
         attackerIndex: '0',
         gender: Q3Gender.MALE,

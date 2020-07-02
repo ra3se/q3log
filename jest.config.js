@@ -13,6 +13,7 @@ module.exports = {
     '!**/_templates/**',
     '!**/lib/**',
     '!**/coverage/**',
-    '!**/*spec*'
+    '!**/*spec*',
+    '!**/.eslintrc.js'
   ]
 }
