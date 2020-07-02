@@ -1,5 +1,5 @@
 name: Continuous Integration
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
@@ -17,7 +17,14 @@ jobs:
         run: yarn build
       - name: Linting
         run: yarn lint
-      - name: Unit Tests
-        run: yarn test
+      - name: Type Checking
+        run: yarn typecheck
+      - name: Code Climate Coverage Action
+        uses: paambaati/codeclimate-action@v2.6.0
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+        with:
+            coverageCommand: yarn coverage
+            coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
 
 
