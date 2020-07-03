@@ -1,4 +1,4 @@
-import { Q3Event, Q3LogBroadcast, Q3LogEvent } from '@q3log/types'
+import { Q3Event, Q3LogBroadcast } from '@q3log/types'
 import parserFactory from './util/parserFactory'
 
 export const broadcastParser = parserFactory(
@@ -8,7 +8,3 @@ export const broadcastParser = parserFactory(
     message: message.replace('\\n', '')
   })
 )
-
-export const determineBroadcast = (
-  event: Q3LogEvent
-): event is Q3LogBroadcast => event.name === Q3Event.BROADCAST

@@ -1,4 +1,4 @@
-import { Q3Event, Q3LogClientDisconnect, Q3LogEvent } from '@q3log/types'
+import { Q3Event, Q3LogClientDisconnect } from '@q3log/types'
 import parserFactory from './util/parserFactory'
 
 export const clientDisconnectParser = parserFactory(
@@ -8,7 +8,3 @@ export const clientDisconnectParser = parserFactory(
     playerIndex
   })
 )
-
-export const determineClientDisconnect = (
-  event: Q3LogEvent
-): event is Q3LogClientDisconnect => event.name === Q3Event.CLIENT_DISCONNECT
