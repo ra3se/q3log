@@ -1,5 +1,3 @@
-// Kill: 7 5 7 5: tores killed ^7O(^0EDVN^7)--o^4< by MOD_ROCKET_SPLASH
-
 import generateKillMessage from './generateKillMessage'
 import { Q3Gender, Q3Module, Q3World } from '@q3log/types'
 

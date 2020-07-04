@@ -1,13 +1,11 @@
 import { Q3Event, Q3LogSay } from '@q3log/types'
 import parserFactory from './util/parserFactory'
+import { sayEventCommon } from './util/sayEventCommon'
 
 export const sayParser = parserFactory(
   new RegExp('^say: (\\d+) (\\d+): ([^:]+): (.+)'),
-  ([playerIndex, arenaIndex, player, message]: string[]): Q3LogSay => ({
+  (data: string[]): Q3LogSay => ({
     name: Q3Event.SAY,
-    playerIndex,
-    arenaIndex,
-    player,
-    message
+    ...sayEventCommon(data)
   })
 )

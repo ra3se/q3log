@@ -1,7 +1,14 @@
 import { Q3Event } from './Q3Event'
 
-export interface Q3LogEventBase<T> {
+interface Q3LogEventBase<T> {
   name: T
+}
+
+interface Q3LogSayEventBase<T> extends Q3LogEventBase<T> {
+  playerIndex: string
+  arenaIndex: string
+  player: string
+  message: string
 }
 
 export type Q3LogEvent =
@@ -35,19 +42,9 @@ export interface Q3LogClientDisconnect
   playerIndex: string
 }
 
-export interface Q3LogSay extends Q3LogEventBase<Q3Event.SAY> {
-  playerIndex: string
-  arenaIndex: string
-  player: string
-  message: string
-}
+export interface Q3LogSay extends Q3LogSayEventBase<Q3Event.SAY> {}
 
-export interface Q3LogSayTeam extends Q3LogEventBase<Q3Event.SAY_TEAM> {
-  playerIndex: string
-  arenaIndex: string
-  player: string
-  message: string
-}
+export interface Q3LogSayTeam extends Q3LogSayEventBase<Q3Event.SAY_TEAM> {}
 
 export interface Q3LogClientUserInfo
   extends Q3LogEventBase<Q3Event.CLIENT_USERINFO_CHANGED> {
