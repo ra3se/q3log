@@ -50,7 +50,7 @@
     "eslint-plugin-standard": "4",
     "eslint-plugin-unicorn": "^20.0.0",
     "husky": "^4.2.5",
-    "hygen": "^5.0.3",
+    "hygen": "^6.0.4",
     "jest": "^26.0.1",
     "lerna": "^3.21.0",
     "lint-staged": "^10.2.6",
