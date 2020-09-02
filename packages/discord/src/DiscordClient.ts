@@ -5,8 +5,6 @@
 
 import axios, { AxiosResponse } from 'axios'
 
-interface DiscordResponse { foo: 'bar' }
-
 interface DiscordHookData {
   content?: string
   username?: string
@@ -23,6 +21,8 @@ interface DiscordHookEmbedData {
   author?: { name: string, url?: string, icon_url?: string }
   footer?: { text: string, icon_url: string }
 }
+
+export interface DiscordResponse { foo: 'bar' }
 
 export default class DiscordClient {
   constructor (id: string, token: string) {

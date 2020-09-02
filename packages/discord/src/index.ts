@@ -1,23 +1,30 @@
 import parser, { stripColor } from '@q3log/parser'
 import { Q3Event } from '@q3log/types'
-import DiscordClient from './DiscordClient'
+import DiscordClient, { DiscordResponse } from './DiscordClient'
 import spamFilter from './spamFilter'
+import { AxiosResponse } from 'axios'
 
 interface Q3DiscordHookOptions {
   id: string
   token: string
+  timeout?: number
 }
 
-export default (line: string, options: Q3DiscordHookOptions): string => {
-  const event = parser(line)
+export default (
+  options: Q3DiscordHookOptions
+): ((line: string) => Promise<AxiosResponse<DiscordResponse>> | undefined) => {
   const client = new DiscordClient(options.id, options.token)
-  const sendMessage = spamFilter(client)
+  const sendMessage = spamFilter(client,
+    options.timeout !== undefined ? options.timeout : 5e3)
 
-  switch (event.name) {
-    case Q3Event.CLIENT_CONNECT:
-      sendMessage(`${stripColor(event.player)} connected`)
-      break
+  return (line: string) => {
+    const event = parser(line)
+
+    switch (event.name) {
+      case Q3Event.CLIENT_CONNECT:
+        return sendMessage(`${stripColor(event.player)} connected`)
+      default:
+        return undefined
+    }
   }
-
-  return line
 }
