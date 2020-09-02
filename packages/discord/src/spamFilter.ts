@@ -1,33 +1,43 @@
-import DiscordClient from './DiscordClient'
+import DiscordClient, { DiscordResponse } from './DiscordClient'
+import { AxiosResponse } from 'axios'
 
-export default (client: DiscordClient): (message: string) => void => {
+type SpamFilter = (message: string) => Promise<AxiosResponse<DiscordResponse>>
+type Resolver = (
+  value: PromiseLike<AxiosResponse<DiscordResponse>>
+) => void
+
+export default (client: DiscordClient, timeout: number): SpamFilter => {
   let hookLastMessage = Date.now()
   let hookMessage = ''
-  let hookTimeout: number
+  let hookTimeout: NodeJS.Timeout
   let pastMessages: string[] = []
 
   setInterval(() => {
     pastMessages.shift()
   }, 10e3)
 
-  return function awaitHookSend (message: string): void {
-    if (message !== undefined && pastMessages.find((x) => x === message) === undefined) {
-      hookMessage += `${hookMessage.length > 0 ? '\n' : ''}${message}`
-    }
-
+  function awaitHookSend (resolve: Resolver): void {
     if (hookTimeout !== undefined) {
       clearTimeout(hookTimeout)
     }
 
-    if (Date.now() - hookLastMessage > 5e3 && hookMessage.length > 0) {
+    if (Date.now() - hookLastMessage > timeout && hookMessage.length > 0) {
+      resolve(client.send(hookMessage))
+
       hookLastMessage = Date.now()
       // Remember the last 10 messages sent
       pastMessages = pastMessages.concat(hookMessage.split('\n')).slice(-10)
       hookMessage = ''
-
-      void client.send(hookMessage)
     } else {
-      hookTimeout = setTimeout(awaitHookSend, 1e3)
+      hookTimeout = setTimeout(() => awaitHookSend(resolve), 1e3)
     }
+  }
+
+  return async (message: string) => {
+    if (message !== undefined && pastMessages.find((x) => x === message) === undefined) {
+      hookMessage += `${hookMessage.length > 0 ? '\n' : ''}${message}`
+    }
+
+    return new Promise(resolve => awaitHookSend(resolve))
   }
 }

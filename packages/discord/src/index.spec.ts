@@ -1,5 +1,5 @@
 import * as axiosOriginal from 'axios'
-import DiscordClient from './DiscordClient'
+import discord from '.'
 
 jest.mock('axios')
 
@@ -10,14 +10,15 @@ beforeEach(() => {
   axios.mockClear()
 })
 
-describe('DiscordClient', () => {
-  test('send', async () => {
-    const client = new DiscordClient('foo', 'bar');
+describe('Discord', () => {
+  test('CLIENT_CONNECT', async () => {
     (axios.post as jest.Mock).mockImplementationOnce(async () => await Promise.resolve({}))
-    await expect(client.send('simple')).resolves.toEqual({})
+    const client = await discord({ id: 'foo', token: 'bar', timeout: 1 })
+
+    await client('ClientConnect: 3 ESK^2i (127.0.0.1)')
 
     expect(axios.post).toHaveBeenCalledWith(
-      'https://discordapp.com/api/webhooks/foo/bar', { content: 'simple' }
+      'https://discordapp.com/api/webhooks/foo/bar', { content: 'ESKi connected' }
     )
   })
 })
