@@ -1,9 +1,8 @@
 import parser, { stripColor } from '@q3log/parser'
 import { Q3Event } from '@q3log/types'
-import DiscordClient from './DiscordClient'
+import DiscordClient, { DiscordResponse } from './DiscordClient'
 import spamFilter from './spamFilter'
 import { AxiosResponse } from 'axios'
-import { DiscordResponse } from './DiscordResponse.type'
 
 interface Q3DiscordHookOptions {
   id: string
