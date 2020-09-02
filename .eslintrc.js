@@ -17,7 +17,8 @@ module.exports = {
     'max-statements': 'error',
     'unicorn/filename-case': ['error', { cases: { camelCase: true, pascalCase: true } }],
     'unicorn/no-reduce': 'off',
-    'unicorn/prevent-abbreviations': 'off'
+    'unicorn/prevent-abbreviations': 'off',
+    'unicorn/no-useless-undefined': 'off'
   },
   overrides: [
     {
