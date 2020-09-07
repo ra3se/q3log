@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@q3log/parser": "^0.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "command-line-args": "^5.1.1",
     "command-line-usage": "^6.1.0",
     "event-stream": "^4.0.1"
