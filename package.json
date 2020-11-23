@@ -47,7 +47,7 @@
     "eslint-plugin-jest": "^24.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "4",
-    "eslint-plugin-standard": "4",
+    "eslint-plugin-standard": "5",
     "eslint-plugin-unicorn": "^23.0.0",
     "husky": "^4.2.5",
     "hygen": "^6.0.4",
