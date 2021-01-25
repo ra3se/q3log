@@ -26,8 +26,8 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
-            coverageCommand: yarn coverage
-            coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
+          coverageCommand: yarn coverage
+          coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
   merge-me:
     name: Merge me!
     needs:
@@ -50,5 +50,3 @@ jobs:
           # pushing to protected branches.
           GITHUB_LOGIN: dependabot[bot]
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-

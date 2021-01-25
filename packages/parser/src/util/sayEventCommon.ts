@@ -2,10 +2,10 @@ export const sayEventCommon = ([
   playerIndex,
   arenaIndex,
   player,
-  message
+  message,
 ]: string[]): {
-  playerIndex: string
-  arenaIndex: string
-  player: string
-  message: string
-} => ({ playerIndex, arenaIndex, player, message })
+  playerIndex: string;
+  arenaIndex: string;
+  player: string;
+  message: string;
+} => ({ playerIndex, arenaIndex, player, message });

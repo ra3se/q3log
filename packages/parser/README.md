@@ -5,9 +5,7 @@
 ## Usage
 
 ```javascript
-const q3logParser = require('@q3log/parser');
-
-
+const q3logParser = require("@q3log/parser");
 
 // TODO: DEMONSTRATE API
 ```

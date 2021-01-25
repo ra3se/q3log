@@ -5,7 +5,7 @@
 ## Usage
 
 ```javascript
-const pretty = require('@q3log/pretty');
+const pretty = require("@q3log/pretty");
 
 // TODO: DEMONSTRATE API
 ```
