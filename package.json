@@ -28,6 +28,7 @@
     "lint:md": "markdownlint -p .gitignore --fix **/*.md",
     "typecheck": "wsrun tsc",
     "build": "wsrun build",
+    "start": "wsrun build --watch",
     "watch": "wsrun build --watch",
     "coverage": "yarn test --coverage"
   },
@@ -42,6 +43,7 @@
     "@typescript-eslint/parser": "3.10.1",
     "babel-jest": "^26.0.1",
     "eslint": "7.18.0",
+    "eslint-config-prettier": "^7.2.0",
     "eslint-config-standard-with-typescript": "^18.0.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jest": "^24.0.0",
@@ -68,7 +70,10 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
     "*.ts": "jest --bail --findRelatedTests"
   },
   "npmClient": "yarn",
