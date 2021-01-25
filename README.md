@@ -5,7 +5,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/47827704feecce681ba2/maintainability)](https://codeclimate.com/repos/5ecb6b5ef97dc2018c002ffd/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/47827704feecce681ba2/test_coverage)](https://codeclimate.com/repos/5ecb6b5ef97dc2018c002ffd/test_coverage)
 [![Known Vulnerabilities](https://snyk.io/test/github/ra3se/q3log/badge.svg)](https://snyk.io/test/github/ra3se/q3log)
-[![dependencies Status](https://david-dm.org/ra3se/q3log/status.svg)](https://david-dm.org/ra3se/q3log)
 
 ## Description
 
