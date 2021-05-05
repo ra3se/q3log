@@ -21,13 +21,6 @@ jobs:
         run: yarn lint
       - name: Type Checking
         run: yarn typecheck
-      - name: Code Climate Coverage Action
-        uses: paambaati/codeclimate-action@v2.7.5
-        env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-        with:
-          coverageCommand: yarn coverage
-          coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
   merge-me:
     name: Merge me!
     needs:
